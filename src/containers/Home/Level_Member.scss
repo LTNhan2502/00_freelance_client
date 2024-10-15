@@ -1,0 +1,64 @@
+.full-height-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Căn giữa nội dung theo chiều dọc */
+    font-size: 0.75rem;
+
+    .non-padding{
+        padding: 0 5px;
+
+        .blur-row{
+            background-color: transparent;
+            backdrop-filter: blur(6px);
+        }
+    }
+
+    .current-level{
+        min-width: 100px;
+        padding: 0.4em 0.8em !important;
+        text-align: center;
+        font-size: 0.55rem !important;
+        font-weight: 700 !important;
+        border-radius: 10px;
+        text-transform: uppercase;
+        background-color: #ffc107;
+        color: black !important;
+    }
+
+    .badge {
+        min-width: 100px;
+        padding: 0.4em 0.8em;
+        text-align: center;
+        font-size: 0.65rem;
+        border-radius: 10px;
+        color: white;
+        text-transform: uppercase;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        &.badge-bg{
+            background-color: #dc3545;
+        }
+    }
+    
+    .unlock-title {
+        font-size: 0.9rem; 
+        font-weight: bold;
+        color: #ffffff;
+        cursor: pointer;
+    }
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    
+    .custom-spinner{
+        color: white;
+    }
+}
+
+
+  
