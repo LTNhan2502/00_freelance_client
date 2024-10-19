@@ -69,7 +69,7 @@ export default function Login (){
 
   return (
     <div className="login-container">
-      <div className="login-title">Đăng nhập vào website</div>
+      <div className="login-title">Đăng nhập</div>
       {/* Start form */}
       <form onSubmit={onSubmitForm}>
         {/* Start username input */}

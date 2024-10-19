@@ -81,7 +81,7 @@ const Register = () => {
   return (
     <>
       <div className="login-container">
-        <div className="login-title">Tham gia vào website ngay</div>
+        <div className="login-title">Đăng kí</div>
         {/* Start form */}
         <form onSubmit={formik.handleSubmit}>
           {/* Start username input */}
@@ -105,20 +105,33 @@ const Register = () => {
             )}
           </div>
           {/* End username input */}
-
-          {/* Start phone number input */}
+  
+          {/* Start phone number input with country code */}
           <div className="_input-group">
             <div className="input-container">
               <span className="icon">
                 <FontAwesomeIcon icon={faPhone} />
               </span>
-              <input
-                type="text"
-                name="phoneNumber"
-                placeholder="Nhập số điện thoại"
-                value={formik.values.phoneNumber}
-                onChange={formik.handleChange}
-              />
+              <div className="phone-input-container">
+                <select
+                  name="countryCode"
+                  value={formik.values.countryCode}
+                  onChange={formik.handleChange}
+                  className="country-code-select"
+                >
+                  <option value="+84">+84</option>
+                  <option value="+1">+1</option>
+                  <option value="+44">+44</option>
+                </select>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="Nhập số điện thoại"
+                  value={formik.values.phoneNumber}
+                  onChange={formik.handleChange}
+                  className="phone-input"
+                />
+              </div>
             </div>
             {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
               <small className="error">{formik.errors.phoneNumber}</small>
@@ -127,7 +140,7 @@ const Register = () => {
             )}
           </div>
           {/* End phone number input */}
-
+  
           {/* Start password input */}
           <div className="_input-group">
             <div className="input-container">
@@ -135,14 +148,14 @@ const Register = () => {
                 <FontAwesomeIcon icon={faLock} />
               </span>
               <input
-                type={isShowPass === false ? "password" : "text"}
+                type={isShowPass ? "text" : "password"}
                 name="password"
                 placeholder="Nhập mật khẩu"
                 value={formik.values.password}
                 onChange={formik.handleChange}
               />
               <span className="eye-icon" onClick={onShowOrHidePass}>
-                <FontAwesomeIcon icon={faEye} />
+                <FontAwesomeIcon icon={isShowPass ? faEyeSlash : faEye} />
               </span>
             </div>
             {formik.touched.password && formik.errors.password ? (
@@ -152,7 +165,7 @@ const Register = () => {
             )}
           </div>
           {/* End password input */}
-
+  
           {/* Start retype password input */}
           <div className="_input-group">
             <div className="input-container">
@@ -160,14 +173,14 @@ const Register = () => {
                 <FontAwesomeIcon icon={faLock} />
               </span>
               <input
-                type={isShowRePass === false ? "password" : "text"}
+                type={isShowRePass ? "text" : "password"}
                 name="retypePassword"
                 placeholder="Nhập lại mật khẩu"
                 value={formik.values.retypePassword}
                 onChange={formik.handleChange}
               />
-              <span className="eye-icon" onClick={() => onShowOrHideRePass()}>
-                <FontAwesomeIcon icon={faEye} />
+              <span className="eye-icon" onClick={onShowOrHideRePass}>
+                <FontAwesomeIcon icon={isShowRePass ? faEyeSlash : faEye} />
               </span>
             </div>
             {formik.touched.retypePassword && formik.errors.retypePassword ? (
@@ -177,7 +190,7 @@ const Register = () => {
             )}
           </div>
           {/* End retype password input */}
-
+  
           {/* Start code input */}
           <div className="_input-group">
             <div className="input-container">
@@ -199,7 +212,7 @@ const Register = () => {
             )}
           </div>
           {/* End code input */}
-
+  
           {/* Start Register navigator */}
           <div className="register-navigator">
             <div>
@@ -210,13 +223,14 @@ const Register = () => {
             </div>
           </div>
           {/* End Register navigator */}
-
+  
           <input className="btn-login" type="submit" value="ĐĂNG KÝ" />
         </form>
         {/* End form */}
       </div>
     </>
   );
+  
 };
 
 export default Register;

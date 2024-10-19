@@ -13,11 +13,15 @@ import InfoBank from './containers/Bank/InfoBank';
 import Withraw from './containers/Withraw/Withraw';
 import Events from './containers/Events/Events';
 import WithrawHistory from './containers/WithrawHistory/WithrawHistory';
+import DepositHistory from './containers/DepositHistory/DepositeHistory';
+import Deposit from './containers/Deposit/Deposit';
+import CustomerService from './containers/CustomerService/CustomerService';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>      
       <Routes>
+        <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/" element={<App />} >
           <Route 
             index
@@ -28,37 +32,75 @@ createRoot(document.getElementById('root')).render(
               </PrivateRoute>
             } 
           />
+
+          {/* Login */}
           <Route 
             path="login" 
             element={localStorage.getItem("access_token") ? <Navigate to="/home" /> : <Login />} 
           />
+
+          {/* Register */}
           <Route 
             path="register" 
             element={localStorage.getItem("access_token") ? <Navigate to="/home" /> : <Register />} 
           />
-          <Route path='warehouse' element={
-            <PrivateRoute>
-              <Warehouse />
-            </PrivateRoute>
-          }/>
 
+          {/* Events */}
           <Route path='events' element={
             <PrivateRoute>
               <Events />
             </PrivateRoute>
           }/>
 
+          {/* Warehouse */}
+          <Route path='warehouse' element={
+            <PrivateRoute>
+              <Warehouse />
+            </PrivateRoute>
+          }/>
+
+          {/* Customer service */}
+          <Route path='customer-service' element={
+            <PrivateRoute>
+              <CustomerService/>
+            </PrivateRoute>
+          }/>
+
+          {/* Deposit */}
+          <Route path="deposit" element={
+            <PrivateRoute>
+              <Deposit/>
+            </PrivateRoute>
+          }/>
+
+          {/* Withraw */}
+          <Route path='withraw' element={
+            <PrivateRoute>
+              <Withraw/>
+            </PrivateRoute>
+          }/>
+
+          {/* Withraw history */}
           <Route path='withraw-history' element={
             <PrivateRoute>
               <WithrawHistory />
             </PrivateRoute>
           }/>
 
-          {/* Bank account */}
-          <Route path='bank-account' element={<InfoBank/>}/>
+          {/* Deposit history */}
+          <Route path='deposit-history' element={
+            <PrivateRoute>
+              <DepositHistory />
+            </PrivateRoute>
+          }/>
 
-          {/* Withraw */}
-          <Route path='withraw' element={<Withraw/>}/>
+          {/* Bank account */}
+          <Route path='bank-account' element={
+            <PrivateRoute>
+              <InfoBank/>
+            </PrivateRoute>
+          }/>
+
         </Route>
       </Routes>      
     </BrowserRouter>

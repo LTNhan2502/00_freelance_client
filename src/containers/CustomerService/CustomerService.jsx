@@ -9,10 +9,9 @@ import { getBankByUserId, reqWithdrawal } from '../../utils/bank';
 import bankAccountImg from "../../assets/withraw-img.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import './Withraw.scss';
 import { toast } from 'react-toastify';
 
-function Withraw() {
+function CustomerService() {
     const userName = localStorage.getItem("user_name")
     const navigate = useNavigate()
     const [thisUser, setThisUser] = useState(null)
@@ -243,4 +242,4 @@ function Withraw() {
     )
 }
 
-export default Withraw
+export default CustomerService

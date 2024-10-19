@@ -4,4 +4,20 @@
             color: red;
         }
     }
+
+    .phone-input-container {
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+      }
+      
+      .country-code-select {
+        margin-right: 10px;
+        padding: 5px;
+        border: none;
+      }
+      
+      .phone-input {
+        flex-grow: 1;
+      }
 }

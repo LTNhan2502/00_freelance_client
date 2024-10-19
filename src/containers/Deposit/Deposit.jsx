@@ -6,13 +6,12 @@ import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { getOneUserByUsername } from '../../utils/userAPI';
 import { getBankByUserId, reqWithdrawal } from '../../utils/bank';
-import bankAccountImg from "../../assets/withraw-img.jpg";
+import depositImg from "../../assets/deposit.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import './Withraw.scss';
 import { toast } from 'react-toastify';
 
-function Withraw() {
+function Deposit() {
     const userName = localStorage.getItem("user_name")
     const navigate = useNavigate()
     const [thisUser, setThisUser] = useState(null)
@@ -131,7 +130,7 @@ function Withraw() {
                             <Row className='backArrow'>
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <span onClick={handleGoToHome}>
-                                        <FontAwesomeIcon icon={faAngleLeft}/> Rút tiền
+                                        <FontAwesomeIcon icon={faAngleLeft}/> Nạp tiền
                                     </span>
                                     <span className='user-amount'>
                                         <div className='fs-12'>Số dư (€)</div>
@@ -230,7 +229,7 @@ function Withraw() {
                         </Col>
                         <Col xs={12} md={6} className="right-col">
                             <img 
-                                src={bankAccountImg}
+                                src={depositImg}
                                 alt="Bank Info Image" 
                                 className="withraw-image"
                             />
@@ -243,4 +242,4 @@ function Withraw() {
     )
 }
 
-export default Withraw
+export default Deposit

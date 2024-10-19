@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col, Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import './HotProduct.scss';
+import Big from 'big.js';
 import { getOneUserByUsername } from '../../utils/userAPI';
 import { getAllProduct, profitDistribution, updateUsernameToProduct } from '../../utils/product';
 import { getImages } from '../../utils/getImage';
 import businessImg from '../../assets/background-distribute.jpg';
+import './HotProduct.scss';
 
 function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     const [distProduct, setDistProduct] = useState([]);
@@ -14,6 +15,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     const [isClickReceive, setIsClickReceive] = useState(null)
     // State này là để kiểm soát không cho thực hiện hành động 2 lần
     const [isProcessing, setIsProcessing] = useState(false); 
+    const [profitToday, setProfitToday] = useState(0);
     const userName = localStorage.getItem("user_name");
 
     useEffect(() => {
@@ -21,7 +23,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             fetchUserAmount(); 
             fetchProductsNoUsername();
         } 
-    }, [userName]);  
+    }, [userAmount]);  
 
     const fetchUserAmount = async () => {
         if (!userName) {
@@ -74,15 +76,24 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
         const isCurrentDist = distProduct.filter(
             (product) => product.userName === userName && product.status === "waiting"
         );
-        
+
         if (isCurrentDist.length !== 0 || isClickReceive === true) {
             toast.error("Có đơn hàng chưa thanh toán, vui lòng thanh toán trước!");
             return;
         }else{
-            handleClickReceive(); // Thực hiện nhận phân phối
+            console.log("Vào đơn");
+                        
+            if (Number(thisUser.distributionTurn) === Number(thisUser.memberId.distribution)) {
+                console.log("Vào lượt");
+                toast.error("Đã hết lượt phân phối hôm nay");
+                return;
+            }else{
+                handleClickReceive(); // Thực hiện nhận phân phối
+            }
         }
     };
 
+    // Khi nhấn vào Nhận thì thực hiện các hàng động sau
     const handleClickReceive = async () => {
         const productsCanDist = distProduct.filter(
             (product) => !product.userName && product.price <= userAmount
@@ -105,22 +116,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
         setShowModal(true);
     };
     
-    // Nút huỷ trong modal
-    // const handleCancelReceive = () => {
-    //     if (selectedProduct && selectedProduct._id) {
-    //         const totalDistribution = (selectedProduct.price * selectedProduct.quantity).toFixed(2); // Tổng phân phối
-    //         const profit = Math.round((selectedProduct.price * selectedProduct.quantity * 0.0024 + Number.EPSILON) * 100) / 100; // Lợi nhuận
-    //         const refund = (parseFloat(profit) + parseFloat(totalDistribution)).toFixed(2); // Hoàn nhập
-    
-    //         // Gọi handleReceive với các giá trị tính toán
-    //         handleReceive(selectedProduct._id, refund, profit);
-    //     }
-    
-    //     // Đóng modal
-    //     setShowModal(false);
-    // };
-    
-    // Nhận sản phẩm, gán sở hữu cho user
+    // Nhận sản phẩm, gán sở hữu cho user (nút huỷ trong modal)
     const handleCancelReceive = async () => {
         try {
             await updateUsernameToProduct(selectedProduct._id, userName);
@@ -137,48 +133,28 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     };
     
     // Thực hiện phân phối (nút phân phối trong modal)
-    // const handleReceiveDist = async (productId, refund, profit) => {
-    //     try {
-    //         const res = await profitDistribution(productId, userName, refund, profit);
-    //         await updateUsernameToProduct(selectedProduct._id, userName);
-
-    //         // Cập nhật số dư user
-    //         setUserAmount((prevAmount) => prevAmount - selectedProduct.price + parseFloat(refund));
-    //         // Gọi lại fetchThisUser để cập nhật lại thông tin user
-    //         await fetchUserAmount();
-    //         // Thực hiện phân phối
-    //         handleSubmitDist(productId, refund, profit)
-
-    //         console.log(isClickReceive);            
-    //     } catch (error) {
-    //         toast.error("Cập nhật sở hữu sản phẩm thất bại");
-    //         console.error("Lỗi cập nhật sở hữu:", error);
-    //     }
-    // };
-
-    // Thực hiện phân phối (nút phân phối trong modal)
-    const handleReceiveDist = async (productId, refund, profit) => {
-        if (isProcessing) return; // Nếu đang trong quá trình xử lý thì không thực hiện nữa
-        setIsProcessing(true); // Đặt cờ báo là đang xử lý
-    
+    const handleReceiveDist = async (productId) => {
+        if (isProcessing) return;
+        setIsProcessing(true);
+      
         try {
-            const res = await profitDistribution(productId, userName, refund, profit);
             await updateUsernameToProduct(selectedProduct._id, userName);
-    
-            // Cập nhật số dư user
-            setUserAmount((prevAmount) => prevAmount - selectedProduct.price + parseFloat(refund));
-    
-            // Gọi lại fetchUserAmount để cập nhật lại thông tin user
-            await fetchUserAmount();
-    
-            // Thực hiện phân phối
-            handleSubmitDist(productId, refund, profit);
-    
+        
+            const totalDistribution = new Big(selectedProduct.price).times(selectedProduct.quantity);
+            const profitAmount = new Big(selectedProduct.price).times(selectedProduct.quantity).times(0.0024).round(2);
+            const refundAmount = totalDistribution.plus(profitAmount).round(2);
+            const newUserAmount = new Big(userAmount).minus(totalDistribution).plus(refundAmount).round(2);
+        
+            // Cập nhật số dư với Big.js xử lý
+            setUserAmount(newUserAmount.toString());  
+            setProfitToday(profitAmount)
+            handleSubmitDist(productId, refundAmount.toString(), profitAmount.toString());
+      
         } catch (error) {
             toast.error("Cập nhật sở hữu sản phẩm thất bại");
             console.error("Lỗi cập nhật sở hữu:", error);
         } finally {
-            setIsProcessing(false); // Kết thúc quá trình xử lý
+            setIsProcessing(false);
         }
     };
     
@@ -194,11 +170,15 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             console.log("Error fetching: ", error);
             toast.error("Phân phối thất bại");
         }
-    };
-    
+    };    
 
     const handleReject = () => {
         toast.error("Bạn chưa mua gói");
+    };
+
+    // Hàm làm tròn với độ chính xác nhất định
+    const roundToTwo = (num) => {
+        return Math.round((num + Number.EPSILON) * 100) / 100;
     };
 
     const handleCloseDistInfo = () => setShowModal(false);
@@ -287,12 +267,9 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
                                         </Button>
                                         <Button variant="primary" className="mt-3 ms-2" 
                                             onClick={() => {
-                                                const totalDistribution = (selectedProduct.price * selectedProduct.quantity).toFixed(2); // Tổng phân phối
-                                                const profit = Math.round((selectedProduct.price * selectedProduct.quantity * 0.0024 + Number.EPSILON) * 100) / 100; // Lợi nhuận
-                                                const refund = (parseFloat(profit) + parseFloat(totalDistribution)).toFixed(2); // Hoàn nhập
-                                                const result = (parseFloat(userAmount) - parseFloat(totalDistribution) + parseFloat(refund)).toFixed(2); // Tính toán kết quả
-                                                handleReceiveDist(selectedProduct._id, result, profit)}
-                                            }
+                                                
+                                                handleReceiveDist(selectedProduct._id);
+                                            }}
                                         >
                                             Phân phối
                                         </Button>
@@ -328,7 +305,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
                     </Row>
                     <Row>
                         <Col md={8} className='text-start'><strong>Chiết khấu hôm nay:</strong></Col>
-                        <Col md={4} className="text-end">{`${thisUser?.profit || 0}`} €</Col>
+                        <Col md={4} className="text-end">{profitToday} €</Col>
                     </Row>
                 </Card.Body>
             </Card>

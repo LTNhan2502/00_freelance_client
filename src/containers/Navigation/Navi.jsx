@@ -48,6 +48,22 @@ const Navi = () => {
     setOpenNoti(!openNoti)
   }
 
+  
+  const handleGoToDeposit = () => {
+    navigate("/deposit")
+    toggleCard()
+  }
+
+  const handleGoToWithraw = () => {
+    navigate("/withraw")
+    toggleCard()
+  }
+  
+  const handleGoToDepositHistory = () => {
+    navigate("/deposit-history")
+    toggleCard()
+  }
+
   const handleGoToBankAccount = () => {
     navigate("/bank-account")
     toggleCard()
@@ -153,9 +169,9 @@ const Navi = () => {
 
                   {/* List navigate */}
                   <ul className="list-unstyled">
-                    <li><p onClick={() => alert("Nạp tiền")}>Nạp tiền</p></li>
-                    <li><p onClick={() => alert("Rút tiền")}>Rút tiền</p></li>
-                    <li><p onClick={() => alert("Lịch sử nạp tiền")}>Lịch sử nạp tiền</p></li>
+                    <li><p onClick={() => handleGoToDeposit()}>Nạp tiền</p></li>
+                    <li><p onClick={() => handleGoToWithraw()}>Rút tiền</p></li>
+                    <li><p onClick={() => handleGoToDepositHistory()}>Lịch sử nạp tiền</p></li>
                     <li><p onClick={() => handleGoToWithrawHistory()}>Lịch sử rút tiền</p></li>
                     <li><p onClick={() => alert("Lịch sử đơn hàng")}>Lịch sử đơn hàng</p></li>
                     <li><p onClick={() => alert("Lịch sử nhận thưởng")}>Lịch sử nhận thưởng</p></li>

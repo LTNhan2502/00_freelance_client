@@ -178,7 +178,7 @@ function InfoBank() {
                                                     {isHaveAccount ? <></> : (
                                                         <>
                                                             <Form.Group className='mb-3'>
-                                                                <Form.Label>Mật khẩu</Form.Label>
+                                                                <Form.Label>Mật khẩu rút tiền</Form.Label>
                                                                 <InputGroup>
                                                                     <Form.Control
                                                                         type={showPassword ? 'text' : 'password'}

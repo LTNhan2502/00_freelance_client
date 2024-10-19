@@ -6,6 +6,7 @@ import {
   faArrowsUpToLine,
   faBuilding,
   faEnvelopeOpenText,
+  faHeadset,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Info.scss";
@@ -43,6 +44,14 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
     navigate("/withraw")
   }
 
+  const handleDeposit = () => {
+    navigate("/deposit")
+  }
+
+  const handleCustomerService = () => {
+    navigate("/customer-service")
+  }
+
   const handleCloseCompanyInfo = () => setShowCompanyInfo(false);
   const handleShowCompanyInfo = () => setShowCompanyInfo(true);
 
@@ -68,7 +77,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
           </div>
         </Col>
         <Col xs={3}>
-          <div className="box box-click" onClick={() => onClickClick()}>
+          <div className="box box-click" onClick={() => handleDeposit()}>
             <div>
               <FontAwesomeIcon icon={faArrowsUpToLine} size="2x" />
             </div>
@@ -78,7 +87,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
         <Col xs={12}>
           <div className="box">
             <Row className="top-left-box">
-              <Col xs={6}>
+              <Col xs={4}>
                 <div onClick={handleShowCompanyInfo} className="box-click">
                   <FontAwesomeIcon
                     icon={faBuilding}
@@ -88,7 +97,17 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                 </div>
                 <div>Hồ sơ công ty</div>
               </Col>
-              <Col xs={6}>
+              <Col xs={4}>
+                <div onClick={handleCustomerService} className="box-click">
+                  <FontAwesomeIcon
+                    icon={faHeadset}
+                    size="2x"
+                    className="company-info"
+                  />
+                </div>
+                <div>CSKH</div>
+              </Col>
+              <Col xs={4}>
                 <div>
                   <FontAwesomeIcon
                     icon={faEnvelopeOpenText}
