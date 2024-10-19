@@ -97,6 +97,16 @@ function InfoBank() {
         navigate("/home")
     }
 
+    // Format số tài khoản ngân hàng thành dạng 28****37
+    const formatBankAccount = (accountNumber) => {
+        if (!accountNumber) return 0;
+        const accountStr = accountNumber.toString(); // Chuyển số tài khoản thành chuỗi
+        const firstPart = accountStr.slice(0, 2); // lấy 2 số đầu
+        const lastPart = accountStr.slice(-2); // lấy 2 số cuối
+        const middlePart = '*'.repeat(4); // thay thế phần giữa bằng dấu *
+        return `${firstPart}${middlePart}${lastPart}`;
+    };
+
     return (
         <Container className='custom-container-bank-account py-5'>
             <Row className='my-4 justify-content-center custom-row'>
@@ -145,7 +155,7 @@ function InfoBank() {
                                                             type='text'
                                                             name='numberBank'
                                                             placeholder='Số tài khoản'
-                                                            value={ isHaveAccount ? userBankAccount.numberBank : formik.values.numberBank}
+                                                            value={ !!isHaveAccount === true ? formatBankAccount(userBankAccount.numberBank) : ""}
                                                             onChange={formik.handleChange}
                                                             isInvalid={formik.touched.numberBank && formik.errors.numberBank}
                                                             disabled={isHaveAccount}
