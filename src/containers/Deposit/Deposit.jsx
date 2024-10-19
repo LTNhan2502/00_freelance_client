@@ -17,11 +17,6 @@ function Deposit() {
     const [thisUser, setThisUser] = useState(null)
     const [isHaveAccount, setIsHaveAccount] = useState(false)
     const [userBankAccount, setUserBankAccount] = useState(null)
-    const [showPassword, setShowPassword] = useState(false)
-
-    const verifyPassword = (inputPassword, hashedPassword) => {
-        return bcrypt.compare(inputPassword, hashedPassword);
-    };
 
     useEffect(() => {
         fetchThisUser()
@@ -70,29 +65,16 @@ function Deposit() {
         }),
 
         onSubmit: async(values) => {
-            verifyPassword(values.passwordBank, thisUser.password)
-                .then(async(isMatch) => {
-                    if(isMatch){
-                        // Phải có thêm điều kiện lượt phân phối hôm nay phải đạt tối đa mới cho phép gọi tới reqWWithraw
-                        // if(thisUser.todayDist === thisUser.memberId.distribution)
-                        const letWithraw = await reqWithdrawal(
-                            thisUser._id, 
-                            values.amount
-                        )
-                        // Kiểm tra api
-                        console.log(letWithraw); 
-                        
-                        if(letWithraw && letWithraw.data.EC === 0) {
-                            toast.success("Gửi yêu cầu thành công")
-                            console.log("success");
-                            
-                        }else {
-                            console.log("Có lỗi");                            
-                        }
-                    }else{
-                        toast.error("Mật khẩu không khớp")
-                    }
-                })
+            const sendDeposit = await reqWithdrawal(thisUser._id, )
+
+            console.log(sendDeposit);
+
+            if(sendDeposit.data.EC === 0){
+                toast.success("Yêu cầu nạp tiền của bạn đã được gửi đi")
+            }else{
+                toast.error("Gửi yêu cầu nạp tiền thất bại")
+            }
+            
 
         }
         
@@ -107,11 +89,6 @@ function Deposit() {
         const middlePart = '*'.repeat(4); // thay thế phần giữa bằng dấu *
         return `${firstPart}${middlePart}${lastPart}`;
     };
-    
-
-    const handleShowOrHide = () => {
-        setShowPassword(!showPassword)
-    }
 
     const handleGoToBankAccount = () => {
         navigate("/bank-account")

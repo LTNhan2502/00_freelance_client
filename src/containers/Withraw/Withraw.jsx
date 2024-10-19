@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 
 function Withraw() {
     const userName = localStorage.getItem("user_name")
+    const statusWithraw = "waiting";
     const navigate = useNavigate()
     const [thisUser, setThisUser] = useState(null)
     const [isHaveAccount, setIsHaveAccount] = useState(false)
@@ -78,7 +79,8 @@ function Withraw() {
                         // if(thisUser.todayDist === thisUser.memberId.distribution)
                         const letWithraw = await reqWithdrawal(
                             thisUser._id, 
-                            values.amount
+                            values.amount,
+                            statusWithraw
                         )
                         // Kiểm tra api
                         console.log(letWithraw); 
