@@ -6,10 +6,10 @@ import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { getOneUserByUsername } from '../../utils/userAPI';
 import { getBankByUserId, reqWithdrawal } from '../../utils/bank';
-import bankAccountImg from "../../assets/withraw-img.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
+import './CustomerService.scss';
 
 function CustomerService() {
     const userName = localStorage.getItem("user_name")
@@ -124,10 +124,10 @@ function CustomerService() {
     return (
         <Container className='custom-container-bank-account py-5'>
             <Row className='my-4 justify-content-center custom-row'>
-                <Card className="ct-bank-card"> 
+                {/* <Card className="ct-bank-card ct-cs"> 
                     <Row>
-                        <Col xs={12} md={6} className='p-4 custom-bank-account-col'>
-                            <Row className='backArrow'>
+                        <Col xs={12} className='p-4 custom-bank-account-col'>
+                            <Row className='backArrow top-cs'>
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <span onClick={handleGoToHome}>
                                         <FontAwesomeIcon icon={faAngleLeft}/> Rút tiền
@@ -226,16 +226,9 @@ function CustomerService() {
                                     </Row>
                                 </Card.Body>
                             </Card>
-                        </Col>
-                        <Col xs={12} md={6} className="right-col">
-                            <img 
-                                src={bankAccountImg}
-                                alt="Bank Info Image" 
-                                className="withraw-image"
-                            />
-                        </Col>
+                        </Col>                        
                     </Row>
-                </Card>
+                </Card> */}
             </Row>
         </Container>
 

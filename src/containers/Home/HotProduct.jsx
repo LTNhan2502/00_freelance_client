@@ -48,9 +48,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             setUserAmount(0);
         }
     };
-    
-    
-    
+        
     const fetchProductsNoUsername = async () => {
         try {
             const products = await getAllProduct();
@@ -147,7 +145,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
         
             // Cập nhật số dư với Big.js xử lý
             setUserAmount(newUserAmount.toString());  
-            setProfitToday(profitAmount)
+            setProfitToday(profitAmount.toFixed(2))
             handleSubmitDist(productId, refundAmount.toString(), profitAmount.toString());
       
         } catch (error) {
