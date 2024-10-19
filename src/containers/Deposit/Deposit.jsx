@@ -182,8 +182,8 @@ function Deposit() {
                                                             </Form.Control.Feedback>  
                                                         </Form.Group>
 
-                                                        <Form.Group className='mb-3'>
-                                                            <Form.Label>Mật khẩu rút tiền</Form.Label>
+                                                        {/* <Form.Group className='mb-3'>
+                                                            <Form.Label>Mật khẩu nạp tiền</Form.Label>
                                                             <InputGroup>                                                            
                                                                 <Form.Control
                                                                     type={showPassword ? "text" : "password"}
@@ -200,10 +200,10 @@ function Deposit() {
                                                                     {formik.errors.passwordBank}
                                                                 </Form.Control.Feedback>
                                                             </InputGroup>
-                                                        </Form.Group>
+                                                        </Form.Group> */}
 
                                                         <Button className='btn-login w-100' type='submit' variant='primary'>
-                                                            Rút tiền
+                                                            Nạp tiền
                                                         </Button>
                                                     </Form>
                                                 ) : (
