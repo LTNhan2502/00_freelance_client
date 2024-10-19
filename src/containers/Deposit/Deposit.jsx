@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { getOneUserByUsername } from '../../utils/userAPI';
-import { getBankByUserId, reqWithdrawal } from '../../utils/bank';
+import { getAllHistoryBank, getBankByUserId, reqDeposit, reqWithdrawal } from '../../utils/bank';
 import depositImg from "../../assets/deposit.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -13,8 +13,10 @@ import { toast } from 'react-toastify';
 
 function Deposit() {
     const userName = localStorage.getItem("user_name")
+    const statusDeposit = "waiting"
     const navigate = useNavigate()
     const [thisUser, setThisUser] = useState(null)
+    const [userBankHistory, setUserBankHistory] = useState(null)
     const [isHaveAccount, setIsHaveAccount] = useState(false)
     const [userBankAccount, setUserBankAccount] = useState(null)
 
@@ -22,15 +24,17 @@ function Deposit() {
         fetchThisUser()
     }, []) 
 
+    useEffect(() => {
+        fetchAllUserBank()
+    }, [userBankHistory])
+
     
     const fetchThisUser = async() => {
         try {
             const res = await getOneUserByUsername(userName)
             const userData = res.data.data
             
-            setThisUser(userData)
-            console.log("User data: ",userData);
-            
+            setThisUser(userData)            
             fetchIsHaveAccount(userData._id);
         } catch (error) {
             console.log("Error fetching: ", error);       
@@ -40,7 +44,6 @@ function Deposit() {
     const fetchIsHaveAccount = async(userId) => {
         const res = await getBankByUserId(userId)
         const result = res.data.data
-        console.log(result);
         
         if(result === null){
             setIsHaveAccount(false)
@@ -50,29 +53,40 @@ function Deposit() {
             setUserBankAccount(result)
         }
     }
+
+    const fetchAllUserBank = async() => {
+        const res = await getAllHistoryBank();
+        const result = res.data.data
+
+        if(result && res.data.data){
+            setUserBankHistory(result)
+        }
+    }
     
     const formik = useFormik({
         initialValues: {            
             amount: "",
-            passwordBank: ""
         },
 
         validationSchema: Yup.object({
             amount: Yup.number()
                 .required("Không được để trống")
                 .positive("Số tiền phải lớn hơn 0"),  
-            passwordBank: Yup.string().required("Không được để trống")          
         }),
 
         onSubmit: async(values) => {
-            const sendDeposit = await reqWithdrawal(thisUser._id, )
+            const bankHistory = userBankHistory.find((history) => thisUser._id === history.userId && history.statusDeposit === "waiting")
 
-            console.log(sendDeposit);
-
-            if(sendDeposit.data.EC === 0){
-                toast.success("Yêu cầu nạp tiền của bạn đã được gửi đi")
+            if(bankHistory){
+                toast.error("Yêu cầu của bạn đang chờ xử lí. Vui lòng chờ!")
             }else{
-                toast.error("Gửi yêu cầu nạp tiền thất bại")
+                const sendDeposit = await reqDeposit(thisUser._id, values.amount, statusDeposit)
+    
+                if(sendDeposit.data.EC === 0){
+                    toast.success("Yêu cầu nạp tiền của bạn đã được gửi đi")
+                }else{
+                    toast.error("Gửi yêu cầu nạp tiền thất bại")
+                }
             }
             
 

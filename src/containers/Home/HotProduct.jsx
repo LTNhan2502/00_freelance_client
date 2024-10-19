@@ -15,8 +15,10 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     const [isClickReceive, setIsClickReceive] = useState(null)
     // State này là để kiểm soát không cho thực hiện hành động 2 lần
     const [isProcessing, setIsProcessing] = useState(false); 
-    const [profitToday, setProfitToday] = useState(0);
+    const [updatedProfit, setUpdatedProfit] = useState(0);
+    // const [updatedProfit, setUpdatedProfit] = useState(parseFloat(thisUser?.profit) || 0);
     const userName = localStorage.getItem("user_name");
+    const maxDist = thisUser?.memberId?.distribution;
 
     useEffect(() => {
         if (userName) {
@@ -24,6 +26,12 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             fetchProductsNoUsername();
         } 
     }, [userAmount]);  
+
+    useEffect(() => {
+        if (thisUser && thisUser.profit) {
+            setUpdatedProfit(parseFloat(thisUser.profit));
+        }
+    }, [thisUser]);
 
     const fetchUserAmount = async () => {
         if (!userName) {
@@ -70,7 +78,9 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     };
 
     // Kiểm tra xem user có thể nhận hàng tiếp được không
-    const handleReceivable = async () => {       
+    const handleReceivable = async () => {  
+        console.log(maxDist);
+             
         const isCurrentDist = distProduct.filter(
             (product) => product.userName === userName && product.status === "waiting"
         );
@@ -78,11 +88,8 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
         if (isCurrentDist.length !== 0 || isClickReceive === true) {
             toast.error("Có đơn hàng chưa thanh toán, vui lòng thanh toán trước!");
             return;
-        }else{
-            console.log("Vào đơn");
-                        
-            if (Number(thisUser.distributionTurn) === Number(thisUser.memberId.distribution)) {
-                console.log("Vào lượt");
+        }else{                        
+            if (Number(thisUser.distributionTurn) >= maxDist) {
                 toast.error("Đã hết lượt phân phối hôm nay");
                 return;
             }else{
@@ -145,7 +152,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
         
             // Cập nhật số dư với Big.js xử lý
             setUserAmount(newUserAmount.toString());  
-            setProfitToday(profitAmount.toFixed(2))
+            setUpdatedProfit((prevProfit) => new Big(prevProfit).plus(profitAmount).toFixed(2));
             handleSubmitDist(productId, refundAmount.toString(), profitAmount.toString());
       
         } catch (error) {
@@ -303,7 +310,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
                     </Row>
                     <Row>
                         <Col md={8} className='text-start'><strong>Chiết khấu hôm nay:</strong></Col>
-                        <Col md={4} className="text-end">{profitToday} €</Col>
+                        <Col md={4} className="text-end">{`${updatedProfit} €`}</Col>
                     </Row>
                 </Card.Body>
             </Card>

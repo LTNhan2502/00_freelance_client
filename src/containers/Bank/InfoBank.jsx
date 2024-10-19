@@ -21,7 +21,7 @@ function InfoBank() {
 
     useEffect(() => {
         fetchThisUser()
-    }, [])
+    }, [isHaveAccount])
 
     
     const fetchThisUser = async() => {
@@ -71,9 +71,7 @@ function InfoBank() {
 
         }),
 
-        onSubmit: async(values) => {
-            console.log("Check đã vào submit chưa");
-            
+        onSubmit: async(values) => {           
             const registerBankAPI = await createBank(
                 values.nameBank, 
                 values.userBank, 
@@ -155,7 +153,7 @@ function InfoBank() {
                                                             type='text'
                                                             name='numberBank'
                                                             placeholder='Số tài khoản'
-                                                            value={ !!isHaveAccount === true ? formatBankAccount(userBankAccount.numberBank) : ""}
+                                                            value={ isHaveAccount ? userBankAccount.numberBank : formik.values.numberBank}
                                                             onChange={formik.handleChange}
                                                             isInvalid={formik.touched.numberBank && formik.errors.numberBank}
                                                             disabled={isHaveAccount}
@@ -173,7 +171,7 @@ function InfoBank() {
                                                             type='text'
                                                             name='userBank'
                                                             placeholder='Tên chủ thẻ'
-                                                            value={ isHaveAccount ? userBankAccount.userBank : formik.values.userBank}
+                                                            value={ isHaveAccount ? formatBankAccount(userBankAccount.userBank) : formik.values.userBank}
                                                             onChange={formik.handleChange}
                                                             isInvalid={formik.touched.userBank && formik.errors.userBank}
                                                             disabled={isHaveAccount}

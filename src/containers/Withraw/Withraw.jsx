@@ -5,7 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import { getOneUserByUsername } from '../../utils/userAPI';
-import { getBankByUserId, reqWithdrawal } from '../../utils/bank';
+import { getAllHistoryBank, getBankByUserId, reqWithdrawal } from '../../utils/bank';
 import bankAccountImg from "../../assets/withraw-img.jpg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ function Withraw() {
     const [thisUser, setThisUser] = useState(null)
     const [isHaveAccount, setIsHaveAccount] = useState(false)
     const [userBankAccount, setUserBankAccount] = useState(null)
+    const [userBankHistory, setUserBankHistory] = useState(null)
     const [showPassword, setShowPassword] = useState(false)
 
     const verifyPassword = (inputPassword, hashedPassword) => {
@@ -29,15 +30,16 @@ function Withraw() {
         fetchThisUser()
     }, []) 
 
+    useEffect(() => {
+        fetchAllUserBank()
+    }, [userBankHistory])
     
     const fetchThisUser = async() => {
         try {
             const res = await getOneUserByUsername(userName)
             const userData = res.data.data
             
-            setThisUser(userData)
-            console.log("User data: ",userData);
-            
+            setThisUser(userData)            
             fetchIsHaveAccount(userData._id);
         } catch (error) {
             console.log("Error fetching: ", error);       
@@ -47,7 +49,6 @@ function Withraw() {
     const fetchIsHaveAccount = async(userId) => {
         const res = await getBankByUserId(userId)
         const result = res.data.data
-        console.log(result);
         
         if(result === null){
             setIsHaveAccount(false)
@@ -55,6 +56,15 @@ function Withraw() {
         }else{
             setIsHaveAccount(true)
             setUserBankAccount(result)
+        }
+    }
+
+    const fetchAllUserBank = async() => {
+        const res = await getAllHistoryBank();
+        const result = res.data.data
+
+        if(result && res.data.data){
+            setUserBankHistory(result)
         }
     }
     
@@ -73,8 +83,13 @@ function Withraw() {
 
         onSubmit: async(values) => {
             verifyPassword(values.passwordBank, thisUser.password)
-                .then(async(isMatch) => {
-                    if(isMatch){
+            .then(async(isMatch) => {
+                const bankHistory = userBankHistory.find((history) => thisUser._id === history.userId && history.statusWithdraw === "waiting")
+                if(isMatch){
+                    if(bankHistory){
+                        toast.error("Yêu cầu của bạn đang chờ xử lí. Vui lòng chờ!")
+                        return;
+                    }else{
                         // Phải có thêm điều kiện lượt phân phối hôm nay phải đạt tối đa mới cho phép gọi tới reqWWithraw
                         // if(thisUser.todayDist === thisUser.memberId.distribution)
                         const letWithraw = await reqWithdrawal(
@@ -82,20 +97,17 @@ function Withraw() {
                             values.amount,
                             statusWithraw
                         )
-                        // Kiểm tra api
-                        console.log(letWithraw); 
                         
                         if(letWithraw && letWithraw.data.EC === 0) {
-                            toast.success("Gửi yêu cầu thành công")
-                            console.log("success");
-                            
+                            toast.success("Gửi yêu cầu thành công")                                
                         }else {
-                            console.log("Có lỗi");                            
-                        }
-                    }else{
-                        toast.error("Mật khẩu không khớp")
+                            toast.error("Gửi yêu cầu thất bại")                           
+                        }                            
                     }
-                })
+                }else{
+                    toast.error("Mật khẩu không khớp")
+                }
+            })
 
         }
         
