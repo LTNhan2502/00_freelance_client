@@ -1,3 +1,8 @@
+.hot-product-container {
+    max-height: 100%; /* Đảm bảo không vượt quá nội dung */
+    overflow: auto; /* Cho phép cuộn nếu nội dung quá lớn */
+}
+
 .distribution-img{
     width: 100%;
     height: auto;
@@ -12,10 +17,13 @@
     border-radius: 7px;
     border: 1px solid #dbdfe4 !important;
     font-size: 0.85rem;
+
+    p{
+        margin-bottom: 0;
+    }
 }
 
 .app-rules-card{
-    // Để ý phần này
     display: none;
     background-color: transparent;
     color: white;

@@ -17,11 +17,11 @@ const Navi = () => {
   const [thisUser, setThisUser] = useState(null)
   const [dataNoti, setDataNoti] = useState([
     {id: 1, noti: "Hệ thống đã thanh toán 100.00€ cho bạn!"},
-    {id: 2, noti: "Bạn đã đặt lệnh rút 100.00€.Yêu cầu của bạn đang được xét duyệt"},
+    {id: 2, noti: "Bạn đã đặt lệnh rút 100.00€. Yêu cầu của bạn đang được xét duyệt"},
     {id: 3, noti: "Hệ thống đã thanh toán 61.00€ cho bạn!"},
-    {id: 4, noti: "Bạn đã đặt lệnh rút 61.00€.Yêu cầu của bạn đang được xét duyệt"},
+    {id: 4, noti: "Bạn đã đặt lệnh rút 61.00€. Yêu cầu của bạn đang được xét duyệt"},
     {id: 5, noti: "Hệ thống đã thanh toán 62.00€ cho bạn!"},
-    {id: 6, noti: "Bạn đã đặt lệnh rút 62.00€.Yêu cầu của bạn đang được xét duyệt"},
+    {id: 6, noti: "Bạn đã đặt lệnh rút 62.00€. Yêu cầu của bạn đang được xét duyệt"},
   ])
 
   useEffect(() => {

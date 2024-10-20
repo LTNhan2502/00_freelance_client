@@ -7,14 +7,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
   
   .main-container{
-    position: relative;
-    min-height: 100vh; /* Đảm bảo nội dung chiếm toàn bộ chiều cao */
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; 
+    box-sizing: border-box;
+    height: 100vh; 
+    width: 100vw;
+    overflow: auto;
     z-index: 1;  
+    padding: calc(10px + 1vw); /* Tự động scale padding theo độ rộng màn hình */
+
     
     .content-container{
-      min-height: calc(var(--vh, 1vh) * 100) !important;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      max-height: 100%; 
+      width: 100%; 
+      // min-height: calc(var(--vh, 1vh) * 100) !important;
+      min-height: calc(80vh - 20px); /* Điều chỉnh chiều cao tối thiểu theo màn hình */
+      max-height: calc(85vh - 5px); /* Giới hạn chiều cao tối đa theo màn hình */
+      width: calc(80vw - 20px); /* Điều chỉnh chiều rộng theo màn hình */
+      // overflow: hidden;
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+        max-height: 100%;
+      }
     }
   }
   .main-container-image{
@@ -31,6 +54,17 @@ body {
     z-index: -1;       
   }
 }
+
+// /* Font scaling */
+// h1, h2, h3, p {
+//   font-size: calc(10px + 0.07vw); /* Điều chỉnh kích thước chữ theo chiều rộng màn hình */
+// }
+
+// .card {
+//   padding: calc(9px + 0.02vw); /* Tự động điều chỉnh padding cho card */
+// }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

@@ -183,7 +183,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     const handleCloseDistInfo = () => setShowModal(false);
 
     return (
-        <div className="text-center">
+        <div className="text-center hot-product-container">
             <img className="distribution-img" src={businessImg} alt="Business" />
 
             <Button
@@ -283,28 +283,28 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             <Card className="mt-4 distribution-card">
                 <Card.Body>
                     <Row>
-                        <Col md={8} className="text-start"><strong>Số dư:</strong></Col>
-                        <Col md={4} className="text-end">{`${userAmount} €`}</Col>
+                        <Col className="text-start"><p><strong>Số dư:</strong></p></Col>
+                        <Col className="text-end"><p>{`${userAmount} €`}</p></Col>
                     </Row>
                     <Row>
-                        <Col md={8} className="text-start"><strong>Cấp hiện tại:</strong></Col>
-                        <Col md={4} className="text-end">{thisUser?.memberId?.packageName || 'Không'}</Col>
+                        <Col className="text-start"><p><strong>Cấp hiện tại:</strong></p></Col>
+                        <Col className="text-end"><p>{thisUser?.memberId?.packageName || 'Không'}</p></Col>
                     </Row>
                     <Row>
-                        <Col md={8} className='text-start'><strong>Chiết khấu:</strong></Col>
-                        <Col md={4} className="text-end">{`${thisUser?.memberId?.discountFrom || 0}% - ${thisUser?.memberId?.discountTo || 0}%`}</Col>
+                        <Col className='text-start'><p><strong>Chiết khấu:</strong></p></Col>
+                        <Col className="text-end"><p>{`${thisUser?.memberId?.discountFrom || 0}% - ${thisUser?.memberId?.discountTo || 0}%`}</p></Col>
                     </Row>
                     <Row>
-                        <Col md={8} className='text-start'><strong>Đơn hàng đã phân phối:</strong></Col>
-                        <Col md={4} className="text-end">{`${thisUser?.distributionTurn || 0}/${thisUser?.memberId?.distribution || 0}`}</Col>
+                        <Col className='text-start'><p><strong>Đơn hàng đã phân phối:</strong></p></Col>
+                        <Col className="text-end"><p>{`${thisUser?.distributionTurn || 0}/${thisUser?.memberId?.distribution || 0}`}</p></Col>
                     </Row>
                     <Row>
-                        <Col md={8} className='text-start'><strong>Chiết khấu hôm qua:</strong></Col>
-                        <Col md={4} className="text-end">0 €</Col>
+                        <Col className='text-start'><p><strong>Chiết khấu hôm qua:</strong></p></Col>
+                        <Col className="text-end"><p>0 €</p></Col>
                     </Row>
                     <Row>
-                        <Col md={8} className='text-start'><strong>Chiết khấu hôm nay:</strong></Col>
-                        <Col md={4} className="text-end">{`${updatedProfit} €`}</Col>
+                        <Col className='text-start'><p><strong>Chiết khấu hôm nay:</strong></p></Col>
+                        <Col className="text-end"><p>{`${updatedProfit} €`}</p></Col>
                     </Row>
                 </Card.Body>
             </Card>

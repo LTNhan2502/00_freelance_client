@@ -125,7 +125,7 @@ function Warehouse() {
     };
 
     return (
-        <Container className="mt-1 py-5 warehouse-container">
+        <Container className="warehouse-container">
             <h4 className="text-start mb-4" style={{ color: "white" }}>Lịch sử phân phối</h4>
             <Row className="g-4">
                 {savedProducts.length > 0 ? (

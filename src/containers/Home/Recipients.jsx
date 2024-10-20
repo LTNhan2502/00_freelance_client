@@ -73,7 +73,9 @@ export default function Recipients() {
                         {recipients && recipients.length > 0 ? (
                             recipients.map((recipient) => (
                                 <div key={recipient.id}>
-                                    {formatDate()} chúc mừng {formatName(recipient.name)} nhận {recipient.profit} €
+                                    <p style={{ marginBottom: "0" }}>
+                                        {formatDate()} chúc mừng {formatName(recipient.name)} nhận {recipient.profit} €
+                                    </p>
                                 </div>
                             ))
                         ) : (

@@ -12,9 +12,9 @@ const Home = () => {
   const [thisUser, setThisUser] = useState(null);
 
   return (
-    <Container className="custom-container py-5">
+    <Container className="custom-container">
       <Row className="my-4 justify-content-center">
-        <Col lg={4} md={6} xs={12} className="mb-4">
+        <Col lg={4} md={6} xs={12} className="h-100">
           {/* Info */}
           <Info userAmount={userAmount} setUserAmount={setUserAmount} thisUser={thisUser}/>
           
@@ -22,10 +22,10 @@ const Home = () => {
           <Level_Member userAmount={userAmount}/>
         </Col>
 
-        <Col lg={8} md={6} xs={12} className="mb-4">
+        <Col lg={8} md={6} xs={12}>
           <Row className="h-100">
             {/* Cột cho danh sách sản phẩm hot */}
-            <Col lg={6} className="mb-4"> 
+            <Col lg={6}> 
               <Card className="h-100 blur-card">
                 <Card.Body>
                   <HotProduct thisUser={thisUser} setThisUser={setThisUser} userAmount={userAmount} setUserAmount={setUserAmount}/>

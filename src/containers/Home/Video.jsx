@@ -9,9 +9,8 @@ class Video extends React.Component{
     }
 
     render(){
-        return(
-            
-            <Card className="h-100 blur-card ms-lg-3 mb-3 mb-lg-0">
+        return(            
+            <Card className="h-100 blur-card ms-lg-3 mb-3 mb-lg-0 video-card">
                 <Card.Body>
                     {/* Video */}
                     <Row>
@@ -21,8 +20,6 @@ class Video extends React.Component{
                     </Row>
                 </Card.Body>
             </Card>
-                
-            
         )
     }
 }
