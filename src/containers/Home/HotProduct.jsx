@@ -25,7 +25,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             fetchUserAmount(); 
             fetchProductsNoUsername();
         } 
-    }, [userAmount]);  
+    }, [updatedProfit]);  
 
     useEffect(() => {
         if (thisUser && thisUser.profit) {
@@ -150,10 +150,9 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
             const refundAmount = totalDistribution.plus(profitAmount).round(2);
             const newUserAmount = new Big(userAmount).minus(totalDistribution).plus(refundAmount).round(2);
         
-            // Cập nhật số dư với Big.js xử lý
-            setUserAmount(newUserAmount.toString());  
+            // Cập nhật số lợi nhuận hôm nay với Big.js xử lý                       
             setUpdatedProfit((prevProfit) => new Big(prevProfit).plus(profitAmount).toFixed(2));
-            handleSubmitDist(productId, refundAmount.toString(), profitAmount.toString());
+            handleSubmitDist(productId, newUserAmount.toString(), profitAmount.toString());
       
         } catch (error) {
             toast.error("Cập nhật sở hữu sản phẩm thất bại");
@@ -164,9 +163,9 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     };
     
     // Phân phối sản phẩm (chuyển trạng thái sang success)
-    const handleSubmitDist = async (productId, refund, profit) => {        
-        try {
-            const res = await profitDistribution(productId, userName, refund, profit);
+    const handleSubmitDist = async (productId, amount, profit) => {        
+        try {            
+            const res = await profitDistribution(productId, userName, amount, profit);
             if (res?.data?.data === "Lợi nhuận phân phối thành công") {
                 toast.success("Phân phối thành công");
             }
@@ -179,11 +178,6 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
 
     const handleReject = () => {
         toast.error("Bạn chưa mua gói");
-    };
-
-    // Hàm làm tròn với độ chính xác nhất định
-    const roundToTwo = (num) => {
-        return Math.round((num + Number.EPSILON) * 100) / 100;
     };
 
     const handleCloseDistInfo = () => setShowModal(false);
@@ -306,7 +300,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
                     </Row>
                     <Row>
                         <Col md={8} className='text-start'><strong>Chiết khấu hôm qua:</strong></Col>
-                        <Col md={4} className="text-end">1.12 €</Col>
+                        <Col md={4} className="text-end">0 €</Col>
                     </Row>
                     <Row>
                         <Col md={8} className='text-start'><strong>Chiết khấu hôm nay:</strong></Col>

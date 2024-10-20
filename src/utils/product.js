@@ -29,7 +29,7 @@ const getProductWaiting = (userName) => {
 // Thực hiện phân phối
 const profitDistribution = (productId, userName, amount, sumProfit) => {
    const URL_API = "/v1/api/profitDistribution";
-   const data = { productId, userName, amount, sumProfit }
+   const data = { productId, userName, sumProfit, amount }
    return instance.post(URL_API, data);
 }
 
