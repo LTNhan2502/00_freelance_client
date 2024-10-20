@@ -101,7 +101,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
     // Khi nhấn vào Nhận thì thực hiện các hàng động sau
     const handleClickReceive = async () => {
         const productsCanDist = distProduct.filter(
-            (product) => !product.userName && product.price <= userAmount
+            (product) => !product.userName && (product.price * product.quantity) <= userAmount
         );
     
         if (productsCanDist.length === 0) {
