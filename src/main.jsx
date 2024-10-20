@@ -16,6 +16,9 @@ import WithrawHistory from './containers/WithrawHistory/WithrawHistory';
 import DepositHistory from './containers/DepositHistory/DepositeHistory';
 import Deposit from './containers/Deposit/Deposit';
 import CustomerService from './containers/CustomerService/CustomerService';
+import Address from './containers/Address/Address';
+import Group from './containers/GroupReport/Group';
+import OrderHistory from './containers/OrderHistory/OrdeHistory';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -94,6 +97,20 @@ createRoot(document.getElementById('root')).render(
             </PrivateRoute>
           }/>
 
+          {/* Order history */}
+          <Route path='order-history' element={
+            <PrivateRoute>
+              <OrderHistory/>
+            </PrivateRoute>
+          }/>
+
+          {/* Group report */}
+          <Route path='group-report' element={
+            <PrivateRoute>
+              <Group/>
+            </PrivateRoute>
+          }/>
+
           {/* Bank account */}
           <Route path='bank-account' element={
             <PrivateRoute>
@@ -101,6 +118,12 @@ createRoot(document.getElementById('root')).render(
             </PrivateRoute>
           }/>
 
+          {/* Address */}
+          <Route path='address' element={
+            <PrivateRoute>
+              <Address/>
+            </PrivateRoute>
+          }/>
         </Route>
       </Routes>      
     </BrowserRouter>

@@ -1,0 +1,38 @@
+.custom-container-bank-account {
+    .address-card{
+        width: 60%;
+    }
+    .form-select {
+        animation: slide-down 0.3s ease-in-out;
+    }
+
+    @keyframes slide-down {
+        from {
+            transform: translateY(-10px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .ct-card {
+        .invalid-feedback {
+            color: red;
+        }
+    }
+
+    .btn-login {
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: darkblue;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .address-card{
+        width: 100% !important;
+    }
+}

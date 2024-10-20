@@ -74,6 +74,21 @@ const Navi = () => {
     toggleCard()
   }
 
+  const handleGoToOrderHistory = () => {
+    navigate("/order-history")
+    toggleCard()
+  }
+
+  const handleGoToGroupReport = () => {
+    navigate("/group-report")
+    toggleCard()
+  }
+
+  const handleGoToAddress = () => {
+    navigate("/address")
+    toggleCard()
+  }
+
   const onClickLogout = () => {
     localStorage.removeItem("user_name");
     localStorage.removeItem("access_token");
@@ -173,11 +188,11 @@ const Navi = () => {
                     <li><p onClick={() => handleGoToWithraw()}>Rút tiền</p></li>
                     <li><p onClick={() => handleGoToDepositHistory()}>Lịch sử nạp tiền</p></li>
                     <li><p onClick={() => handleGoToWithrawHistory()}>Lịch sử rút tiền</p></li>
-                    <li><p onClick={() => alert("Lịch sử đơn hàng")}>Lịch sử đơn hàng</p></li>
+                    <li><p onClick={() => handleGoToOrderHistory()}>Lịch sử đơn hàng</p></li>
                     <li><p onClick={() => alert("Lịch sử nhận thưởng")}>Lịch sử nhận thưởng</p></li>
-                    <li><p onClick={() => alert("Báo cáo nhóm")}>Báo cáo nhóm</p></li>
+                    <li><p onClick={() => handleGoToGroupReport()}>Báo cáo nhóm</p></li>
                     <li><p onClick={() => handleGoToBankAccount()}>Thông tin ngân hàng</p></li>
-                    <li><p onClick={() => alert("Địa chỉ")}>Địa chỉ</p></li>
+                    <li><p onClick={() => handleGoToAddress()}>Địa chỉ</p></li>
                     <li><p onClick={() => alert("Chuyển đổi ngôn ngữ")}>Chuyển đổi ngôn ngữ</p></li>
                     <li><p onClick={onClickLogout}>Đăng xuất</p></li>
                   </ul>

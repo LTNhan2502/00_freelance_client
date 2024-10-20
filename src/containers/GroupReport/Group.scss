@@ -1,0 +1,94 @@
+.top-group-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid #dbdfe4;
+    border-radius: 20px;
+    padding: 10px auto;
+    
+    .tgc-element {
+        padding: 15px 20px;  
+        border-right: 1px solid #dbdfe4;  
+        flex: 1;  
+        text-align: center; 
+        cursor: pointer;
+        
+        &:last-child {
+            border-right: none; 
+        }
+
+        &.active {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    }
+    
+}
+
+.group-report-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 10px;
+    border-bottom: 1px solid #dbdfe4;
+  
+    .user-info {
+        display: flex;
+        align-items: center;
+    
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+  
+        .user-details {
+            .username {
+                font-weight: bold;
+                margin-bottom: 0;
+            }
+  
+            .balance {
+                margin-bottom: 0;
+                font-size: 14px;
+        
+                span {
+                    color: #007bff;
+                }
+            }
+        }
+    }
+  
+    .user-meta {
+        p {
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .avatar{
+        width: 40px;
+        height: 40px;
+    }
+
+    .user-details {
+        .username {
+            font-size: 12px;
+        }
+
+        .balance {
+            font-size: 12px !important;
+        }
+    }
+
+    .user-meta {
+        p {
+            font-size: 12px !important;
+        }
+    }
+}
+  
