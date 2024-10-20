@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faEye, faUser } from "@fortawesome/free-regular-svg-icons";
+import { faBookmark, faEye, faEyeSlash, faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
@@ -81,7 +81,7 @@ const Register = () => {
   return (
     <>
       <div className="login-container">
-        <div className="login-title">Đăng kí</div>
+        <div className="login-title">Đăng ký</div>
         {/* Start form */}
         <form onSubmit={formik.handleSubmit}>
           {/* Start username input */}

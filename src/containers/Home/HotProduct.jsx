@@ -262,7 +262,7 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
                                         <Card.Text>Hoàn nhập</Card.Text>
                                     </Col>
                                     <Col className="text-end">
-                                        <Card.Text className='fs-4 text-red'>{(selectedProduct.price * selectedProduct.quantity * 0.0024 + selectedProduct.price).toFixed(2)} €</Card.Text>
+                                        <Card.Text className='fs-4 text-red'>{(selectedProduct.price * selectedProduct.quantity * 0.0024 + selectedProduct.price * selectedProduct.quantity).toFixed(2)} €</Card.Text>
                                     </Col>
                                 </Row>
                                 <Row>
