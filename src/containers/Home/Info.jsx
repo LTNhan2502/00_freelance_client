@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Row, Col, Modal, Button } from "react-bootstrap";
+import { Container, Row, Col, Modal, Button, Card } from "react-bootstrap";
 import {
   faArrowsDownToLine,
   faArrowsUpToLine,
@@ -9,16 +9,28 @@ import {
   faHeadset,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
+import avatar from '../../assets/icon-5355896_1920.png';
 import "./Info.scss";
 import { getOneUserByUsername } from "../../utils/userAPI";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import { faBell, faCalendar } from "@fortawesome/free-regular-svg-icons";
 
 export default function Info({ userAmount, setUserAmount, thisUser }) {
   const defaultAmount = 0;
   const userName = localStorage.getItem("user_name");
   const navigate = useNavigate()
   const [showCompanyInfo, setShowCompanyInfo] = useState(false);
+  const [openNoti, setOpenNoti] = useState(false)
+  const [dataNoti, setDataNoti] = useState([
+    {id: 1, noti: "Hệ thống đã thanh toán 100.00€ cho bạn!"},
+    {id: 2, noti: "Bạn đã đặt lệnh rút 100.00€. Yêu cầu của bạn đang được xét duyệt"},
+    {id: 3, noti: "Hệ thống đã thanh toán 61.00€ cho bạn!"},
+    {id: 4, noti: "Bạn đã đặt lệnh rút 61.00€. Yêu cầu của bạn đang được xét duyệt"},
+    {id: 5, noti: "Hệ thống đã thanh toán 62.00€ cho bạn!"},
+    {id: 6, noti: "Bạn đã đặt lệnh rút 62.00€. Yêu cầu của bạn đang được xét duyệt"},
+  ])
+
 
   const fetchUserAmount = async () => {
     if (!userName) {
@@ -40,6 +52,10 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
     fetchUserAmount();
   }, [userName, userAmount]);
 
+  const handleGoToEvent = () => {
+    navigate("/events")
+  }
+
   const handleWithraw = () => {
     navigate("/withraw")
   }
@@ -55,20 +71,118 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
   const handleCloseCompanyInfo = () => setShowCompanyInfo(false);
   const handleShowCompanyInfo = () => setShowCompanyInfo(true);
 
+  const toggleNoti = () => {
+    setOpenNoti(!openNoti)
+  }
+
   return (
     <Container className="p-0">
-      <Row className="mb-3 font-medium">
-        {/* Info */}
-        <Col xs={6}>
-          <div className="box">
-            <div className="d-flex justify-content-start align-items-center">
-              <FontAwesomeIcon icon={faWallet} size="2x" />
-              <span className="p">Số dư khả dụng</span>
+      <Row className="mb-3 mt-3 font-medium">
+        <Col xs={12} className="mb-3">
+          <div className="d-flex justify-content-between">
+            <div className="avatar-div">
+              <input type="file" id="file-input" className="d-none"/>
+              <label for="file-input" style={{
+                width: '50px',
+                height: '50px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+              }}>
+                <img src={avatar} alt="Avatar" className="avatar-img" />                
+              </label>
+              <div className="avatar-hello">
+                <span style={{ 
+                  color: "#cfd0d1", 
+                  fontWeight: "500"
+                }}>Xin chào</span>
+                <span>Username</span>
+              </div>
             </div>
-            <div className="d-flex justify-content-start">{`${userAmount} €`}</div>
+            <div>
+              {/* Sự kiện */}
+              <FontAwesomeIcon icon={faCalendar}
+                style={{
+                  fontSize: "1.8rem",
+                  color: "white",
+                  paddingRight: "10px",
+                  cursor: "pointer",
+                  marginRight: "10px"
+                }}
+                onClick={() => handleGoToEvent()}
+              />
+              {/* Chuông thông báo */}
+              <FontAwesomeIcon icon={faBell} 
+                style={{
+                  fontSize: "1.8rem",
+                  color: "white",
+                  paddingRight: "10px",
+                  cursor: "pointer"
+                }}
+                onClick={() => toggleNoti()}
+              />
+
+              {/* Modal thông báo */}
+              <Modal
+                show={openNoti} 
+                onHide={toggleNoti}
+                size="lg"
+                className="responsive-modal"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title>Thư thông báo</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  {dataNoti.map((noti) => (
+                    <Card key={noti.id} className="mb-2"
+                      style={{
+                        backgroundColor: "transparent",
+                        color: "white",
+                        border: "1px solid #7a797d"
+                      }}
+                    >
+                      <Card.Body>
+                        {noti.noti}
+                      </Card.Body>
+                    </Card>
+                  ))}
+                </Modal.Body>
+              </Modal>
+            </div>
           </div>
         </Col>
-        <Col xs={3}>
+
+        {/* Info */}
+        <div className="field-money">
+          <div className="left-field-money">
+            <div className="box">
+              <div className="d-flex justify-content-start align-items-center">
+                <FontAwesomeIcon icon={faWallet} size="2x" />
+                <span className="p">Số dư khả dụng</span>
+              </div>
+              <div className="d-flex justify-content-start">{`${userAmount} €`}</div>
+            </div>
+          </div>
+          <div className="right-field-money">
+            <div className="box box-click" onClick={() => handleWithraw()}>
+              <div>
+                <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
+              </div>
+              <div>Rút tiền</div>
+            </div>
+
+            <div className="box box-click" onClick={() => handleDeposit()}>
+              <div>
+                <FontAwesomeIcon icon={faArrowsUpToLine} size="2x" />
+              </div>
+              <div>Nạp tiền</div>
+            </div>
+          </div>
+        </div>
+        {/* <Col xs={4}>
+          
+        </Col>
+        <Col xs={4}></Col>
+        <Col xs={2}>
           <div className="box box-click" onClick={() => handleWithraw()}>
             <div>
               <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
@@ -76,14 +190,14 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
             <div>Rút tiền</div>
           </div>
         </Col>
-        <Col xs={3}>
+        <Col xs={2}>
           <div className="box box-click" onClick={() => handleDeposit()}>
             <div>
               <FontAwesomeIcon icon={faArrowsUpToLine} size="2x" />
             </div>
             <div>Nạp tiền</div>
           </div>
-        </Col>
+        </Col> */}
         <Col xs={12}>
           <div className="box">
             <Row className="top-left-box">

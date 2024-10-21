@@ -25,7 +25,7 @@ function DepositHistory() {
         }, 1000)
     }
     return (
-        <Container className="mt-1 py-5 warehouse-container">
+        <Container className="warehouse-container" style={{ marginBottom: "20px" }}>
             <h4 className="text-start mb-4" style={{ color: "white" }}>Lịch sử nạp tiền</h4>
             <Row className="g-4">
                 {DepositHistory.length > 0 ? (

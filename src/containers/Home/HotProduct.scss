@@ -16,7 +16,7 @@
     color: white;
     border-radius: 7px;
     border: 1px solid #dbdfe4 !important;
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
 
     p{
         margin-bottom: 0;
@@ -95,6 +95,12 @@
 @media (max-width: 768px) {
     .app-rules-card{
         display: block;
+    }
+
+    .distribution-card{    
+        p{
+            font-size: 12px !important;
+        }
     }
     .received-product-card {
         flex-direction: column !important;

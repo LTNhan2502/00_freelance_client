@@ -1,72 +1,72 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-  .main-container{
+
+  /* Căn giữa toàn bộ trang web */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #181818 !important; /* Màu nền của không gian thừa */
+
+  .main-container {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px; 
+    padding: 16px 16px 60px 16px;
+    margin: 0 auto;
     box-sizing: border-box;
-    height: 100vh; 
-    width: 100vw;
+    width: 100%;
+    max-width: 714px; 
+    min-width: 320px;
+    height: 100vh;
     overflow: auto;
-    z-index: 1;  
-    padding: calc(10px + 1vw); /* Tự động scale padding theo độ rộng màn hình */
+    background-image: url('../assets/blur-rain-03.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: 1;
 
-    
-    .content-container{
+    .content-container {
       display: flex;
       flex-direction: column;
+      align-items: center;
       flex-grow: 1;
-      max-height: 100%; 
-      width: 100%; 
-      // min-height: calc(var(--vh, 1vh) * 100) !important;
-      min-height: calc(80vh - 20px); /* Điều chỉnh chiều cao tối thiểu theo màn hình */
-      max-height: calc(85vh - 5px); /* Giới hạn chiều cao tối đa theo màn hình */
-      width: calc(80vw - 20px); /* Điều chỉnh chiều rộng theo màn hình */
-      // overflow: hidden;
-
+      width: 100%;
+      max-width: 715px;
+      min-width: 320px;
+      max-height: 100%;
+      min-height: 100vh;
+      
+      .navigation {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px !important;    
+      }
+      
       .content {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         width: 100%;
         max-height: 100%;
+        margin-bottom: 70px;
       }
     }
   }
-  .main-container-image{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../assets/blur-rain-03.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed !important;
-    background-repeat: no-repeat;
-    z-index: -1;       
+
+  .main-container-image {
+    background-color: #181818; /* Không gian thừa có màu #181818 */
   }
 }
 
-// /* Font scaling */
-// h1, h2, h3, p {
-//   font-size: calc(10px + 0.07vw); /* Điều chỉnh kích thước chữ theo chiều rộng màn hình */
-// }
-
-// .card {
-//   padding: calc(9px + 0.02vw); /* Tự động điều chỉnh padding cho card */
-// }
-
-
-
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

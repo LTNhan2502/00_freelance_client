@@ -1,13 +1,14 @@
-// import React from 'react'
-// import "slick-carousel/slick/slick.css"; 
-// import "slick-carousel/slick/slick-theme.css";
-// import Slider from "react-slick";
+import React from 'react'
 import './Events.scss';
 
+import main_event from '../../assets//main-event.jpg';
 import jewelry1 from '../../assets/jewelry-01.jpg';
 import jewelry2 from '../../assets/jewelry-02.jpg';
 import jewelry3 from '../../assets/jewelry-03.jpg';
 
+// import "slick-carousel/slick/slick.css"; 
+// import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
 // import mainEv1 from '../../assets/blur-rain-01.webp';
 // import sub1Ev1 from '../../assets/blur-rain-03.jpg';
 // import sub2Ev1 from '../../assets/background-distribute.jpg';
@@ -83,14 +84,13 @@ import jewelry3 from '../../assets/jewelry-03.jpg';
 
 // export default Events;
 
-import React from 'react'
 
 function Events() {
   return (
     <div className="event-page">
       <div className="event-left">
         {/* Phần bên trái */}
-        <div className="event-title">
+        {/* <div className="event-title">
           <h1>MERCADO</h1>
           <h1>CHƯƠNG TRÌNH ƯU ĐÃI SỰ KIỆN</h1>
           <h1>MÃ MỜI TÌNH NHÂN</h1>
@@ -105,11 +105,12 @@ function Events() {
         </div>
         <div className="event-thankyou">
           <p>MERCADO XIN CHÂN THÀNH CẢM ƠN</p>
-        </div>
+        </div> */}
+        <img src={main_event} alt='Main event' className='main-event-img'/>
       </div>
 
-      <div className="event-right">
-        {/* Phần bên phải */}
+      {/* Phần bên phải */}
+      {/* <div className="event-right">
         <div className="event-image">
           <img src={jewelry1} alt="Event 1" />
         </div>
@@ -119,7 +120,7 @@ function Events() {
         <div className="event-image">
           <img src={jewelry3} alt="Event 3" />
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }

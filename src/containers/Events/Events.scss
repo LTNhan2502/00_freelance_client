@@ -1,19 +1,32 @@
 .event-page {
-    display: grid;
-    grid-template-columns: 7fr 3fr;
-    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // gap: 20px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 10px;
-    color: white;
+    padding: 10px 0;
+    // color: white;
   
     .event-left {
-        background-color: rgba(64, 64, 64, 0.57);
-        border: 1px solid #dbdfe4;
-        border-radius: 20px;
-        padding: 20px;
-        text-align: center;
+        // background-color: rgba(64, 64, 64, 0.57);
+        // border: 1px solid #dbdfe4;
+        // border-radius: 20px;
+        // padding: 20px;
+        // text-align: center;
+
+        width: 100%;
+        height: 100%; 
+        border-radius: 20px; 
+        overflow: hidden;
+
+        .main-event-img{
+          width: 100%;
+          height: 110%;
+          object-fit: cover;
+          border-radius: inherit;
+        }
   
         .event-title {
             h1 {
@@ -52,16 +65,34 @@
   }
   
   @media (max-width: 768px) {
+    // .event-page {
+    //   grid-template-columns: 1fr; 
+    // }
+  
+    // .event-left {
+    //   margin-bottom: 20px; 
+    // }
+  
+    // .event-right .event-image img {
+    //   height: 150px;
+    // }
     .event-page {
-      grid-template-columns: 1fr; 
+      min-height: none !important;
+      padding: 10px;
+      
+      .event-left {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+          width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng trên điện thoại */
+          
+          .main-event-img {
+              width: 100%;
+              height: 110% !important;
+          }
+      }
     }
-  
-    .event-left {
-      margin-bottom: 20px; 
-    }
-  
-    .event-right .event-image img {
-      height: 150px;
-    }
+
+
   }
   

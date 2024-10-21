@@ -1,3 +1,39 @@
+.avatar-div{
+    padding-left: 12px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+
+    .avatar-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .avatar-hello{
+        display: flex;
+        flex-direction: column;
+        color: white;
+        margin-left: 10px;
+
+    }
+}
+
+.field-money{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .right-field-money{
+        display: flex;
+        gap: 0.75rem;
+        flex-direction: row;
+    }
+}
+
 .blur-card {
     background-color: transparent !important;
     backdrop-filter: blur(6px) !important;
@@ -35,6 +71,10 @@
 
     .box-click{
         cursor: pointer;
+    }
+
+    .box > div:last-child {
+        font-size: 12px;
     }
 }
 

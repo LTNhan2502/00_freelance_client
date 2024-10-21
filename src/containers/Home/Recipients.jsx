@@ -65,7 +65,7 @@ export default function Recipients() {
                     paddingLeft: "16px"
                 }}
             >Danh sách lợi nhuận thành viên toàn cầu</h3>
-            <Card className="h-100 blur-card ms-lg-3 mb-3 mb-lg-0 text-center">
+            <Card className="h-100 blur-card text-center" style={{ marginBottom: "8rem" }}>
                 <Card.Body>
                     <div style={{
                         fontSize: "14px"
