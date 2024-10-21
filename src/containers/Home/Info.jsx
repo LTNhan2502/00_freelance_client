@@ -178,26 +178,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
             </div>
           </div>
         </div>
-        {/* <Col xs={4}>
-          
-        </Col>
-        <Col xs={4}></Col>
-        <Col xs={2}>
-          <div className="box box-click" onClick={() => handleWithraw()}>
-            <div>
-              <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
-            </div>
-            <div>Rút tiền</div>
-          </div>
-        </Col>
-        <Col xs={2}>
-          <div className="box box-click" onClick={() => handleDeposit()}>
-            <div>
-              <FontAwesomeIcon icon={faArrowsUpToLine} size="2x" />
-            </div>
-            <div>Nạp tiền</div>
-          </div>
-        </Col> */}
+        
         <Col xs={12}>
           <div className="box">
             <Row className="top-left-box">

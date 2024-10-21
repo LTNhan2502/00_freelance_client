@@ -1,21 +1,55 @@
 .topnav {
-  background-image: url(../../assets/botton-navigate.png);
-  background-position: center;
-  background-size: cover;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  width: 100%;
   height: 74px;
-  max-width: 721px;
+  width: 714px;
   position: relative;
   display: flex;
   justify-content: space-between; 
   align-items: center;
-  gap: 0.5rem;
   position: fixed;
   bottom: 0; 
   z-index: 1000; 
-  padding: 0 50px;
+
+  .list-nav{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-image: url(../../assets/botton-navigate.png);
+    background-position: center;
+    // margin-left: 20px;
+    background-size: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+
+    .flex-1{
+      flex: 1 1 0% !important;
+      
+      .flex-col{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+
+        .img-nav-element{
+          width: 24px;
+          height: 24px;
+        }
+
+        span{
+          color: #caccd0;
+        }
+        
+        .active-text {
+          color: #fff;
+        }
+      }
+    }
+  }
 
   .custom-nav-link{
     display: flex;
@@ -41,32 +75,10 @@
       max-width: 100%;
       border-radius: 10px;
     }
-
-    &.active {
-      border-bottom: 2px solid #c8275f;
-      color: white;
-    }
   }
 
   .profiles-container {
     position: relative;
-
-    .avatar-btn {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      overflow: hidden;
-      padding: 0;
-      border: none;
-      background: none;
-      cursor: pointer;
-  
-      .avatar-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
 
     .info-panel {
       position: fixed;
@@ -150,9 +162,7 @@
               cursor: pointer;
               padding: 10px 0 0 0;
               color: white;
-              &:hover {
-                text-decoration: underline;
-              }
+              
             }
           }
         }
