@@ -8,7 +8,9 @@ import { getImages } from '../../utils/getImage';
 import businessImg from '../../assets/background-distribute.jpg';
 import './HotProduct.scss';
 
-function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
+function HotProduct() {
+    const [thisUser,setThisUser] = useState(null);
+    const [userAmount, setUserAmount] = useState(0);
     const [distProduct, setDistProduct] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -184,6 +186,17 @@ function HotProduct({thisUser, setThisUser, userAmount, setUserAmount}) {
 
     return (
         <div className="text-center hot-product-container">
+            <div className='d-flex justify-content-between align-items-center'>
+                <div className='py-20'>
+                    <h1 className='text-lg'>Chi tiết đơn hàng</h1>
+                    <span className='text-xs'>Dữ liệu được cung cấp bởi Mercado Libre</span>
+                </div>
+                <div className='py-20'>
+                    <h1 className='text-amount'>0 €</h1>
+                    <span className='text-xs'>Số dư (€)</span>
+                </div>
+            </div>
+
             <img className="distribution-img" src={businessImg} alt="Business" />
 
             <Button

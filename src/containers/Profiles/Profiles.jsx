@@ -1,63 +1,123 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Collapse, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import avatar from '../../assets/icon-5355896_1920.png';
 import './Profiles.scss';
+import { getOneUserByUsername } from '../../utils/userAPI';
 
-export default function UserInfo() {
-  const [open, setOpen] = useState(false);
+export default function Profiles() {
+    const [thisUser, setThisUser] = useState(null)
+    const [userAmount, setUserAmount] = useState(0)
+    const defaultAmount = 0;
+    const userName = localStorage.getItem("user_name")
 
-    const onClickNap = () => {
-        alert("Click Nạp tiền")
-    }
+    useEffect(() => {
+        fetchUserAmount();
+    }, [userName]);
 
-  return (
-    <Container>
-        <Row className="justify-content-center">
-            <Col xs={12} md={8} lg={6}>
-                {/* Button Avatar */}
-                <div className="d-flex justify-content-end"> {/* Sử dụng d-flex và justify-content-end để căn phải */}
-                    <Button onClick={() => setOpen(!open)} className="avatar-btn">
-                        <img src={avatar} alt="Avatar" className="avatar-img" />
-                    </Button>
-                </div>
+    const fetchUserAmount = async () => {
+        if (!userName) {
+          setUserAmount(defaultAmount);
+          return;
+        }
+    
+        try {
+          const res = await getOneUserByUsername(userName);
+          const result = res.data.data
 
-                {/* Card Info */}
-                <Collapse in={open}>
-                    <Card className="mt-3 blur-card-profiles">
-                        <Card.Body>
-                            <ul className="list-unstyled">
-                                <li className='py-3 px-3'>
-                                    {/* Ở đây sau này sẽ dùng thẻ Link của react-router-dom để điều hướng */}
-                                    <p onClick={() => onClickNap()}>Nạp tiền</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Rút tiền</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Lịch sử rút tiền</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Lịch sử nhận thưởng</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Thông tin ngân hàng</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Địa chỉ</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Chuyển đổi ngôn ngữ</p>
-                                </li>
-                                <li className='py-3 px-3'>
-                                    <p>Đăng xuất</p>
-                                </li>
-                            </ul>
-                        </Card.Body>
-                    </Card>
-                </Collapse>
-            </Col>
-        </Row>
-    </Container>
-  );
+          setThisUser(result)
+          setUserAmount(result.amount || defaultAmount);
+        } catch (error) {
+          console.error("Error fetching user amount:", error);
+          setUserAmount(defaultAmount);
+        }
+    };
+
+    const handleGoToDeposit = () => {
+        navigate("/deposit")
+        toggleCard()
+      }
+    
+      const handleGoToWithraw = () => {
+        navigate("/withraw")
+        toggleCard()
+      }
+      
+      const handleGoToDepositHistory = () => {
+        navigate("/deposit-history")
+        toggleCard()
+      }
+    
+      const handleGoToBankAccount = () => {
+        navigate("/bank-account")
+        toggleCard()
+      }
+    
+      const handleGoToWithrawHistory = () => {
+        navigate("/withraw-history")
+        toggleCard()
+      }
+    
+      const handleGoToOrderHistory = () => {
+        navigate("/order-history")
+        toggleCard()
+      }
+    
+      const handleGoToGroupReport = () => {
+        navigate("/group-report")
+        toggleCard()
+      }
+    
+      const handleGoToAddress = () => {
+        navigate("/address")
+        toggleCard()
+      }
+    
+      const onClickLogout = () => {
+        localStorage.removeItem("user_name");
+        localStorage.removeItem("access_token");
+        window.location.href = "/login";
+      };
+
+    return (        
+        <div className="warehouse-container">
+            <div className="info-panel">
+                <Card className="info-card">
+                <Card.Body>
+                    {/* Username, ID */}
+                    <div className="info-card-top">
+                    <span>{thisUser?.userName}</span>
+                    <span>ID: {thisUser?._id}</span>
+                    </div>
+
+                    {/* Card general info */}
+                    <div className="info-card-mid p-4">
+                    <div className="left-card-column">
+                        <span>Số dư</span>
+                        <span>{thisUser?.amount || 0} €</span>
+                    </div>
+                    <div className="right-card-column">
+                        <span>Cấp thành viên</span>
+                        <span className="text-center">{thisUser?.memberId?.packageName || "Không"}</span>
+                    </div>
+                    </div>
+
+                    {/* List navigate */}
+                    <ul className="list-unstyled">
+                    <li><p onClick={() => handleGoToDeposit()}>Nạp tiền</p></li>
+                    <li><p onClick={() => handleGoToWithraw()}>Rút tiền</p></li>
+                    <li><p onClick={() => handleGoToDepositHistory()}>Lịch sử nạp tiền</p></li>
+                    <li><p onClick={() => handleGoToWithrawHistory()}>Lịch sử rút tiền</p></li>
+                    <li><p onClick={() => handleGoToOrderHistory()}>Lịch sử đơn hàng</p></li>
+                    <li><p onClick={() => alert("Lịch sử nhận thưởng")}>Lịch sử nhận thưởng</p></li>
+                    <li><p onClick={() => handleGoToGroupReport()}>Báo cáo nhóm</p></li>
+                    <li><p onClick={() => handleGoToBankAccount()}>Thông tin ngân hàng</p></li>
+                    <li><p onClick={() => handleGoToAddress()}>Địa chỉ</p></li>
+                    <li><p onClick={() => alert("Chuyển đổi ngôn ngữ")}>Chuyển đổi ngôn ngữ</p></li>
+                    <li><p onClick={onClickLogout}>Đăng xuất</p></li>
+                    </ul>
+                </Card.Body>
+                </Card>
+            </div>
+        </div>        
+    );
 }

@@ -1,6 +1,32 @@
 .hot-product-container {
-    max-height: 100%; /* Đảm bảo không vượt quá nội dung */
-    overflow: auto; /* Cho phép cuộn nếu nội dung quá lớn */
+    max-height: 100%; 
+    margin-top: 1rem;
+    margin-bottom: 4rem !important;
+
+    .py-20{
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .text-lg{
+            font-size: 1.275rem;
+            line-height: 1.75rem;
+            color: white;
+            margin: 0;
+            text-align: start;
+        }
+
+        .text-xs{
+            font-size: 0.75rem;
+            line-height: 1rem;
+            color: white;
+        }
+
+        .text-amount{
+            color: white;
+            font-size: 15px;
+            margin: 0;
+        }
+    }
 }
 
 .distribution-img{
@@ -24,12 +50,12 @@
 }
 
 .app-rules-card{
-    display: none;
     background-color: transparent;
     color: white;
     border-radius: 7px;
     border: 1px solid #dbdfe4 !important;
     font-size: 0.93rem;
+    margin-bottom: 5rem;
 }
 
 .modal-content{
@@ -93,10 +119,6 @@
 
 
 @media (max-width: 768px) {
-    .app-rules-card{
-        display: block;
-    }
-
     .distribution-card{    
         p{
             font-size: 12px !important;

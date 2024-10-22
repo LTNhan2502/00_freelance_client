@@ -9,9 +9,9 @@ function App() {
         <div className="main-container-image"></div>
         <div className="main-container">
           <div className="content-container">            
-            <div className="content">
+            {/* <div className="content"> */}
               <Outlet/>
-            </div>
+            {/* </div> */}
             <div className="navigation">
               <Navi/>
             </div>

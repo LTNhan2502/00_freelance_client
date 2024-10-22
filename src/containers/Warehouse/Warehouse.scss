@@ -1,4 +1,37 @@
 .warehouse-container{ 
+    width: 100%;
+    min-width: 714px;
+    padding: 20px;
+
+    .warehouse-empty{
+        width: 100%;
+    }
+
+    .py-20{
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        .text-lg{
+            font-size: 1.275rem;
+            line-height: 1.75rem;
+            color: white;
+            margin: 0;
+            text-align: start;
+        }
+
+        .text-xs{
+            font-size: 0.75rem;
+            line-height: 1rem;
+            color: white;
+        }
+
+        .text-amount{
+            color: white;
+            font-size: 15px;
+            margin: 0;
+        }
+    }
+
     h5{
         color: white;
         margin: auto;
@@ -107,3 +140,54 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .warehouse-container{
+        min-width: 320px;
+    }
+}
+
+@media (width: 390px) {
+    .warehouse-container{
+        min-width: 390px;
+    }
+}
+
+@media (width: 320px) {
+    .warehouse-container{
+        min-width: 320px;
+    }
+}
+
+@media (width: 412px) {
+    .warehouse-container{
+        min-width: 412px;
+    }
+}
+
+@media (width: 375px) {
+    .warehouse-container{
+        min-width: 375px;
+    }
+}
+
+@media (width: 414px) {
+    .warehouse-container{
+        min-width: 414px;
+    }
+}
+
+@media (width: 430px) {
+    .warehouse-container{
+        min-width: 430px;
+    }
+}
+
+@media (width: 768px) {
+    .warehouse-container{
+        min-width: 714px;
+
+    }
+}
+
+

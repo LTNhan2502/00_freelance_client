@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Container, Row, Button, Modal } from 'react-bootstrap';
-import './Warehouse.scss';
 import { toast } from 'react-toastify';
 import { getImages } from '../../utils/getImage';
 import { getProductWaiting, profitDistribution } from '../../utils/product';
 import { getOneUserByUsername } from '../../utils/userAPI';
+import businessImg from '../../assets/background-distribute.jpg';
+import './Warehouse.scss';
 
 function Warehouse() {
     const userName = localStorage.getItem("user_name");
@@ -125,9 +126,20 @@ function Warehouse() {
     };
 
     return (
-        <Container className="warehouse-container">
-            <h4 className="text-start mb-4" style={{ color: "white" }}>Lịch sử phân phối</h4>
-            <Row className="g-4">
+        <div className="warehouse-container mt-3">
+            <div className='d-flex justify-content-between align-items-center'>
+                <div className='py-20'>
+                    <h1 className='text-lg'>Lịch sử phân phối</h1>
+                    <span className='text-xs'>Dữ liệu được cung cấp bởi Mercado Libre</span>
+                </div>
+                <div className='py-20'>
+                    <h1 className='text-amount'>0 €</h1>
+                    <span className='text-xs'>Số dư (€)</span>
+                </div>
+            </div>
+
+            {/* <h4 className="text-start mb-4" style={{ color: "white", width: "100%" }}>Lịch sử phân phối</h4> */}
+            <Row className="g-4 warehouse-row">
                 {savedProducts.length > 0 ? (
                     savedProducts.map((product) => {
                         const totalDistribution = (product.price * product.quantity).toFixed(2);
@@ -135,7 +147,7 @@ function Warehouse() {
                         const refund = (parseFloat(profit) + product.price).toFixed(2);
 
                         return (
-                            <Col xs={12} sm={6} md={4} lg={4} key={product._id}>
+                            <Col xs={12} key={product._id}>
                                 <Card className="h-100 received-product-card">
                                     <div className={`stamp ${product.status === 'waiting' ? 'waiting' : 'success'}`}>
                                         <div className="stamp-inside">
@@ -219,7 +231,9 @@ function Warehouse() {
                         );
                     })
                 ) : (
-                    <h5 className="text-start">Chưa nhận sản phẩm nào</h5>
+                    <Col xs={12} className='warehouse-empty'>
+                        <h5 className="text-start">Chưa nhận sản phẩm nào</h5>
+                    </Col>
                 )}
             </Row>
 
@@ -308,7 +322,7 @@ function Warehouse() {
                     </Card>
                 </Modal.Body>
             </Modal>
-        </Container>
+        </div>
     );
 }
 

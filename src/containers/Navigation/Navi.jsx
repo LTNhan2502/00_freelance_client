@@ -9,6 +9,7 @@ import warehouse_img from '../../assets/warehouse-icon.png';
 import warehouse_img_active from '../../assets/warehouse-icon-active.png';
 import customer_service_img from '../../assets/customer-service.png';
 import me_img from '../../assets/me-icon.png';
+import me_img_active from '../../assets/me-icon-active.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faCalendar, faUser } from "@fortawesome/free-regular-svg-icons";
 import { getOneUserByUsername } from "../../utils/userAPI";
@@ -41,6 +42,10 @@ const Navi = () => {
   const toggleCard = () => {
     setOpen(!open);
   };
+
+  const handleGoToOrderDetail = () => {
+    navigate("/order-detail")
+  }
 
   
   const handleGoToDeposit = () => {
@@ -91,7 +96,7 @@ const Navi = () => {
 
   return (
     <>
-      {isAuthenticated ? (
+      {/* {isAuthenticated ? ( */}
         <div className="topnav">
           <ul className="list-nav">
             {/* Trang chủ */}
@@ -138,11 +143,19 @@ const Navi = () => {
             </li>
 
             {/* Tôi */}
-            <li className={`flex-1 profiles-container ${isAuthenticated ? '' : 'd-none'}`}>    
+            <li className="flex-1 profiles-container">    
               {/* Profile Avatar Container */}
-              <NavLink onClick={toggleCard} className="flex-col">
-                <img src={me_img} alt="home" className="img-nav-element"/>
-                <span>Tôi</span>
+              <NavLink to="/profiles" className="flex-col" style={{ marginRight: "24px" }}>
+                {({isActive}) => (
+                  <>
+                    <img 
+                      src={isActive ? me_img_active : me_img} 
+                      alt="home" 
+                      className="img-nav-element"
+                    />
+                    <span className={isActive ? 'active-text' : ''}>Tôi</span>
+                  </>
+                )}
               </NavLink>
 
               {/* Slide-In Panel */}
@@ -191,11 +204,11 @@ const Navi = () => {
           </ul>
 
           {/* Nhận phân phối */}
-          <button className="receive-btn-nav"></button>   
+          <button className="receive-btn-nav" onClick={handleGoToOrderDetail}></button>   
         </div>
-      ) : (
-        <></>
-      )}
+      {/* ) : ( */}
+        {/* <></> */}
+      {/* )} */}
     </>
   );
 };

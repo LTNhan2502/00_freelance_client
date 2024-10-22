@@ -35,15 +35,6 @@ const Home = () => {
 
         <Col xs={12}>
           <Row className="h-100">
-            {/* Cột cho danh sách sản phẩm hot */}
-            <Col xs={12}> 
-              <Card className="h-100 blur-card">
-                <Card.Body>
-                  <HotProduct thisUser={thisUser} setThisUser={setThisUser} userAmount={userAmount} setUserAmount={setUserAmount}/>
-                </Card.Body>
-              </Card>
-            </Col>
-
             {/* Cột chứa Recipients */}
             <Col xs={12} className="d-flex flex-column">
               <div>

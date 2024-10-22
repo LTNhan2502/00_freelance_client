@@ -1,12 +1,15 @@
 .topnav {
   height: 74px;
-  width: 714px;
+  width: 100%;
+  max-width: 714px;
   position: relative;
   display: flex;
   justify-content: space-between; 
   align-items: center;
   position: fixed;
   bottom: 0; 
+  // margin: 0 auto;
+  padding: 0;
   z-index: 1000; 
 
   .list-nav{
@@ -17,7 +20,6 @@
     position: relative;
     background-image: url(../../assets/botton-navigate.png);
     background-position: center;
-    // margin-left: 20px;
     background-size: cover;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -203,12 +205,6 @@
 }
 
 @media (max-width: 768px) {
-  .topnav{
-    padding: 0 50px;
-  }
-  .media-logo{
-    display: none;
-  }
   .responsive-modal .modal-dialog {
     margin: 0 10px; 
   }

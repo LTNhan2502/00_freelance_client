@@ -12,7 +12,7 @@ body {
     width: 100%;
     max-width: 400px;
     margin: 70px auto;
-    padding: 20px;
+    padding: 10px;
     background-color: white;
     border-radius: 10px;
     box-shadow: -2px -1px 8px 5px rgba(0, 0, 0, 0.1);
@@ -28,7 +28,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center; 
-        max-width: 90%;
+        max-width: 100%;
         margin: 1px auto;
 
         ._input-group {
@@ -144,13 +144,13 @@ body {
 
 @media (max-width: 768px) {
   .login-container {
-    width: 90%;
+    width: 100%;
   }
 }
 
 @media (max-width: 425px) { //Responsive for mobile          
     .login-container{
-        width: 90%;
+        width: 100%;
         max-width: 400px;
         margin: 50px auto;
         padding: 20px;

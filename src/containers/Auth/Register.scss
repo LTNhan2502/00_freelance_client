@@ -21,3 +21,10 @@
         flex-grow: 1;
       }
 }
+
+@media (max-width: 425px) {
+  .country-code-select{
+    background-color: #f0f0f0;
+
+  }
+}
