@@ -14,8 +14,12 @@ import { toast } from 'react-toastify';
 const banks = [
     'Agribank', 'BIDV', 'Vietcombank', 'Vietinbank', 'Techcombank',
     'ACB', 'VPBank', 'SHB', 'HDBank', 'Standard Chartered Bank',
-    'HSBC', 'Citibank', 'ANZ Bank', 'Woori Bank Vietnam', 'ABBank',
-    'Bangkok Bank',
+    'HSBC', 'Citibank', 'ANZ Bank', 'ABBank',
+    'Bangkok Bank', 'Barclays Lloyds', 'Banking Group', ' Royal Bank of Scotland (RBS)',
+    'Santander UK', ' Société Générale', 'Crédit Agricole', 'Crédit Lyonnais (LCL)',
+    'Mitsubishi UFJ (MUFG)', 'Sumitomo Mitsui Trust', ' Mizuho', 'Resona', 
+    'Shinsei', 'UniCredit', 'Cassa Depositi e Prestiti', 'Banco BPM',
+    'NongHyup Bank', 'Shinhan', 'KB (Kookmin Bank)', 'Woori'
 ];
 
 function InfoBank() {
