@@ -1,6 +1,7 @@
 .ct-cs-div{    
     width: 100%;
-    min-width: 680px;
+    min-width: 550px;
+    max-width: 570px;
     margin: 25px auto;
     display: flex;
     justify-content: center;
@@ -30,6 +31,8 @@
         margin-right: 10px;
         width: 40px;
         height: 40px;
+        display: block;
+        object-fit: cover;
     }
 
     .header-title {

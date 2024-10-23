@@ -160,14 +160,14 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
             </div>
           </div>
           <div className="right-field-money">
-            <div className="box box-click" onClick={() => handleCustomerService()}>
+            <div className="box box-click" onClick={() => handleWithraw()}>
               <div>
                 <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
               </div>
               <div>Rút tiền</div>
             </div>
 
-            <div className="box box-click" onClick={() => handleDeposit()}>
+            <div className="box box-click" onClick={() => handleCustomerService()}>
               <div>
                 <FontAwesomeIcon icon={faArrowsUpToLine} size="2x" />
               </div>

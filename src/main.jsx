@@ -37,105 +37,109 @@ createRoot(document.getElementById('root')).render(
           />
 
           {/* Login */}
-          {/* <Route 
+          <Route 
             path="login" 
             element={localStorage.getItem("access_token") ? <Navigate to="/home" /> : <Login />} 
-          /> */}
+          />
 
           {/* Register */}
-          {/* <Route 
+          <Route 
             path="register" 
             element={localStorage.getItem("access_token") ? <Navigate to="/home" /> : <Register />} 
-          /> */}
+          />
 
           {/* Order detail */}
           <Route path='order-detail' element={
-            
-            <HotProduct/>
+            <PrivateRoute>
+              <HotProduct/>
+            </PrivateRoute>
 
           }/>
 
           {/* Events */}
           <Route path='events' element={
-          
+            <PrivateRoute>
               <Events />
+            </PrivateRoute>
           
           }/>
 
           {/* Warehouse */}
           <Route path='warehouse' element={
-          
+            <PrivateRoute>
               <Warehouse />
+            </PrivateRoute>
           
           }/>
 
           {/* Customer service */}
           <Route path='customer-service' element={
-          
+            <PrivateRoute>
               <CustomerService/>
+            </PrivateRoute>
           
           }/>
 
           <Route path='profiles' element={
-
-            <Profiles/>
-
+            <PrivateRoute>
+              <Profiles/>
+            </PrivateRoute>
           }/>
 
           {/* Deposit */}
           <Route path="deposit" element={
-          
+            <PrivateRoute>
               <Deposit/>
-          
+            </PrivateRoute>          
           }/>
 
           {/* Withraw */}
           <Route path='withraw' element={
-          
+            <PrivateRoute>
               <Withraw/>
-          
+            </PrivateRoute>          
           }/>
 
           {/* Withraw history */}
           <Route path='withraw-history' element={
-          
+            <PrivateRoute>
               <WithrawHistory />
-          
+            </PrivateRoute>          
           }/>
 
           {/* Deposit history */}
           <Route path='deposit-history' element={
-          
+            <PrivateRoute>
               <DepositHistory />
-          
+            </PrivateRoute>          
           }/>
 
           {/* Order history */}
           <Route path='order-history' element={
-            
-              <OrderHistory/>
-          
+              <PrivateRoute>
+                <OrderHistory/>
+              </PrivateRoute>          
           }/>
 
           {/* Group report */}
           <Route path='group-report' element={
-          
+            <PrivateRoute>
               <Group/>
-          
+            </PrivateRoute>          
           }/>
 
           {/* Bank account */}
           <Route path='bank-account' element={
-          
+            <PrivateRoute>
               <InfoBank/>
-          
+            </PrivateRoute>          
           }/>
 
           {/* Address */}
           <Route path='address' element={
-          
+            <PrivateRoute>
               <Address/>
-          
+            </PrivateRoute>          
           }/>
         </Route>
       </Routes>      

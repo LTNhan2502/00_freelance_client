@@ -96,7 +96,7 @@ const Navi = () => {
 
   return (
     <>
-      {/* {isAuthenticated ? ( */}
+      {isAuthenticated ? (
         <div className="topnav">
           <ul className="list-nav">
             {/* Trang chủ */}
@@ -206,9 +206,9 @@ const Navi = () => {
           {/* Nhận phân phối */}
           <button className="receive-btn-nav" onClick={handleGoToOrderDetail}></button>   
         </div>
-      {/* ) : ( */}
-        {/* <></> */}
-      {/* )} */}
+      ) : (
+        <></>
+      )}
     </>
   );
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faIcons } from '@fortawesome/free-solid-svg-icons';
-import avatarIcon from '../../assets/web-icon.jpg';
+import cskh from '../../assets/customer-service-img.jpg';
 import './CustomerService.scss';
 
 function CustomerService() {
@@ -20,7 +20,7 @@ function CustomerService() {
             {/* Header */}
             <div className="header">
                 <img 
-                    src={avatarIcon} 
+                    src={cskh} 
                     alt="Avatar" 
                     className="avatar"
                 />
