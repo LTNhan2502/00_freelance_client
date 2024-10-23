@@ -1,13 +1,15 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navi from "../containers/Navigation/Navi";
 
 function App() {
+  const location = useLocation()
+  const isEventPage = location.pathname.includes("/events")
   return (
     <>
         <div className="main-container-image"></div>
-        <div className="main-container">
+        <div className={`main-container ${isEventPage ? "event-background" : "default-background"}`}>
           <div className="content-container">            
             {/* <div className="content"> */}
               <Outlet/>

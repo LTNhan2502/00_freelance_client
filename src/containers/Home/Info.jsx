@@ -225,6 +225,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                     icon={faEnvelopeOpenText}
                     size="2x"
                     className="noti-mail"
+                    onClick={() => toggleNoti()}
                   />
                 </div>
                 <div>Thư thông báo</div>

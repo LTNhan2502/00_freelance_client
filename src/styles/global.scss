@@ -12,6 +12,8 @@ body {
   height: 100vh;
   background-color: #181818 !important; /* Màu nền của không gian thừa */
 
+  
+
   .main-container {
     position: relative;
     display: flex;
@@ -25,12 +27,19 @@ body {
     min-width: 320px;
     height: 100vh;
     overflow: auto;
-    background-image: url('../assets/blur-rain-03.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
     z-index: 1;
+
+    &.event-background{
+      background-image: url('../assets/background-event.jpg');
+    }
+
+    &.default-background{
+      background-image: url('../assets/blur-rain-03.jpg');
+    }
 
     .content-container {
       display: flex;
