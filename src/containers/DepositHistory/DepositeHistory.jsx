@@ -1,3 +1,5 @@
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 
@@ -24,20 +26,25 @@ function DepositHistory() {
             ])
         }, 1000)
     }
+
+    const handleGoToHome = () => {
+        navigate("/home")
+    }
+
     return (
-        <Container className="warehouse-container" style={{ marginBottom: "20px" }}>
-            <h4 className="text-start mb-4" style={{ color: "white" }}>Lịch sử nạp tiền</h4>
-            <Row className="g-4">
+        <Container className="withdraw-history-container" style={{ marginBottom: "20px" }}>
+            <div className='d-flex align-items-center py-pl'>
+                <span onClick={handleGoToHome}>
+                    <FontAwesomeIcon icon={faAngleLeft}/> 
+                </span>
+                <h1 className="text-start">Lịch sử nạp tiền</h1>
+            </div>
+            <Row className="g-2 withraw-history-row">
                 {DepositHistory.length > 0 ? (
                     DepositHistory.map((history) => {
                         return (
-                            <Col xs={12} sm={6} md={4} lg={4} key={history.id}>
-                                <Card className="h-100 received-product-card"
-                                    style={{
-                                        backgroundImage: 'linear-gradient(to right, #007bff, #66ccff, #82e0e7)',
-                                        color: "black"
-                                    }}
-                                >
+                            <Col xs={12} key={history.id}>
+                                <Card className="h-100 withdraw-history-card">
                                     <Card.Body>
                                         <Card.Title>
                                             <div className='mt-2' style={{ fontSize: "14px" }}>
@@ -47,8 +54,8 @@ function DepositHistory() {
                                         <Row className='warehouse-general'>
                                             <Col>
                                                 <Card.Text>
-                                                    <p style={{ marginBottom: "0" }}>Số tiền: +{history.deposit} €</p>
-                                                    <p style={{ marginBottom: "0" }}>Số dư: {history.amount} €</p>                                                    
+                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số tiền: +{history.deposit} €</p>
+                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số dư: {history.amount} €</p>                                                    
                                                 </Card.Text>
                                             </Col>
                                             <Col className="text-end">

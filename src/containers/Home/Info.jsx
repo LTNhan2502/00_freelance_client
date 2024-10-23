@@ -6,6 +6,7 @@ import {
   faArrowsUpToLine,
   faBuilding,
   faEnvelopeOpenText,
+  faGavel,
   faHeadset,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,13 +15,15 @@ import "./Info.scss";
 import { getOneUserByUsername } from "../../utils/userAPI";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { faBell, faCalendar } from "@fortawesome/free-regular-svg-icons";
+import { faBell, faCalendar, faHandshake } from "@fortawesome/free-regular-svg-icons";
 
 export default function Info({ userAmount, setUserAmount, thisUser }) {
   const defaultAmount = 0;
   const userName = localStorage.getItem("user_name");
   const navigate = useNavigate()
   const [showCompanyInfo, setShowCompanyInfo] = useState(false);
+  const [showFoundationRules, setShowFoundationRules] = useState(false);
+  const [showCoOp, setShowCoOp] = useState(false);
   const [openNoti, setOpenNoti] = useState(false)
   const [dataNoti, setDataNoti] = useState([
     {id: 1, noti: "Hệ thống đã thanh toán 100.00€ cho bạn!"},
@@ -68,8 +71,17 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
     navigate("/customer-service")
   }
 
+  // Handle hồ sơ công ty
   const handleCloseCompanyInfo = () => setShowCompanyInfo(false);
   const handleShowCompanyInfo = () => setShowCompanyInfo(true);
+
+  // Handle quy tắc nền tảng
+  const handleCloseFoundationRules = () => setShowFoundationRules(false);
+  const handleShowFoundationRules = () => setShowFoundationRules(true);
+
+  // Handle hợp tác phát triển
+  const handleCloseCoOp = () => setShowCoOp(false);
+  const handleShowCoOp = () => setShowCoOp(true);
 
   const toggleNoti = () => {
     setOpenNoti(!openNoti)
@@ -95,7 +107,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                   color: "#cfd0d1", 
                   fontWeight: "500"
                 }}>Xin chào</span>
-                <span>Username</span>
+                <span>{userName ? userName : "Username"}</span>
               </div>
             </div>
             <div>
@@ -182,6 +194,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
         <Col xs={12}>
           <div className="box">
             <Row className="top-left-box">
+              {/* Hồ sơ công ty */}
               <Col xs={4}>
                 <div onClick={handleShowCompanyInfo} className="box-click">
                   <FontAwesomeIcon
@@ -192,16 +205,20 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                 </div>
                 <div>Hồ sơ công ty</div>
               </Col>
+              
+              {/* Hợp tác phát triển */}
               <Col xs={4}>
-                <div onClick={handleCustomerService} className="box-click">
+                <div onClick={handleShowCoOp} className="box-click">
                   <FontAwesomeIcon
-                    icon={faHeadset}
+                    icon={faHandshake}
                     size="2x"
-                    className="company-info"
+                    className="noti-mail"
                   />
                 </div>
-                <div>CSKH</div>
+                <div>Hợp tác phát triển</div>
               </Col>
+
+              {/* Thư thông báo */}
               <Col xs={4}>
                 <div>
                   <FontAwesomeIcon
@@ -223,7 +240,6 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
           <Modal.Title>Thông tin công ty</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {/* Thêm nội dung thông tin công ty tại đây */}
           <p>
           Mercado Libre được thành lập bởi Marcos Galperín. Ông đã ý tưởng nền tảng này vào tháng 3 năm 1999, khi đang làm việc để có được bằng thạc sĩ quản trị kinh doanh tại trường kinh doanh Đại học Stanford, Hoa Kỳ. Ông được YPF tài trợ để thực hiện chương trình sau đại học này trong khi làm việc trong ngành tài chính của công ty. Tuy nhiên, trong thời gian ông học tại đại học, công ty Repsol đã mua lại YPF, và bộ phận mà Galperín làm việc đã đóng cửa. Đó là lúc Galperín bắt đầu quá trình nghiên cứu và tư vấn trong ba tháng với các giáo sư khác, trong đó ông phân tích khả năng tạo ra một thị trường trực tuyến tại Châu Mỹ Latinh. Giáo sư tài chính của ông, Jack McDonald, là người giúp ông có được nhà đầu tư đầu tiên: John Muse.
           </p>
@@ -236,6 +252,29 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={handleCloseCompanyInfo}>
+            Đóng
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal hiển thị hợp tác phát triển */}
+      <Modal show={showCoOp} onHide={handleCloseCoOp} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Hợp tác phát triển</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Chế độ đại lý nền tảng
+          </p>
+          <p>
+            Thành viên Mercado Libre có thể trở thành đại lý của nền tảng thương mại điện tử
+          </p>
+          <p>
+            Bằng cách giới thiệu người mới tham gia cùng trở thành thành viên Mercado Libre & các đại lý có thể nhận được phần thưởng bổ sung giá trị 00,01% . Khuyến mãi trực tiếp phần thưởng hoa hồng nhận được cho cấp bậc thành viên từ 0.25% & vốn đầu tư để tính lợi nhuận thu được từ các mã sản phẩm.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleCloseCoOp}>
             Đóng
           </Button>
         </Modal.Footer>

@@ -47,72 +47,67 @@ function Address() {
     };
 
     return (
-        <Container className='custom-container-bank-account py-5'>
-            <Row className='my-4 justify-content-center custom-row'>
-                <Card className="ct-bank-card address-card">
-                    <Row>
-                        <Col className='p-4 custom-bank-account-col'>
-                            <Row className='backArrow'>
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <span onClick={handleGoToHome}>
-                                        <FontAwesomeIcon icon={faAngleLeft}/> Thông tin
-                                    </span>
+        <Container className='group-report-container-main py-5'>
+            <div className='d-flex align-items-center py-pl'>
+                <span onClick={handleGoToHome}>
+                    <FontAwesomeIcon icon={faAngleLeft}/>
+                </span>
+                <h1 className="text-start">Địa chỉ</h1>
+            </div>
+            <div>
+                <Col xs={12}>
+                    <div className='address-container'>
+                        {!isSubmitted ? (
+                            <Form onSubmit={formik.handleSubmit}>
+                            <Form.Group>
+                                <Form.Label>Chọn tỉnh thành</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="province"
+                                    value={formik.values.province}
+                                    onChange={formik.handleChange}
+                                    className={`${formik.errors.province && formik.touched.province ? 'is-invalid' : ''}`}
+                                    style={{ transition: 'all 0.3s ease-in-out' }}
+                                >
+                                    <option value="">Chọn tỉnh thành...</option>
+                                    {provinces.map((province, index) => (
+                                        <option key={index} value={province}>
+                                            {province}
+                                        </option>
+                                    ))}
+                                </Form.Control>
+                                {formik.errors.province && formik.touched.province && (
+                                <div className="invalid-feedback">
+                                    {formik.errors.province}
                                 </div>
-                            </Row>
-                            <Card className='ct-card'>
-                                <Card.Body>
-                                    <Row>
-                                        <Col xs={12}>
-                                            <div className='bank-linking-container'>
-                                                {!isSubmitted ? (
-                                                    <Form onSubmit={formik.handleSubmit}>
-                                                        <Form.Group>
-                                                            <Form.Label>Chọn tỉnh thành</Form.Label>
-                                                            <Form.Control
-                                                                as="select"
-                                                                name="province"
-                                                                value={formik.values.province}
-                                                                onChange={formik.handleChange}
-                                                                className={`${formik.errors.province && formik.touched.province ? 'is-invalid' : ''}`}
-                                                                style={{ transition: 'all 0.3s ease-in-out' }}
-                                                            >
-                                                                <option value="">Chọn tỉnh thành...</option>
-                                                                {provinces.map((province, index) => (
-                                                                    <option key={index} value={province}>
-                                                                        {province}
-                                                                    </option>
-                                                                ))}
-                                                            </Form.Control>
-                                                            {formik.errors.province && formik.touched.province && (
-                                                                <div className="invalid-feedback">
-                                                                    {formik.errors.province}
-                                                                </div>
-                                                            )}
-                                                        </Form.Group>
+                                )}
+                            </Form.Group>
 
-                                                        <Button className='btn-login w-100 mt-3' type='submit' variant='primary'>
-                                                            Xác nhận
-                                                        </Button>
-                                                    </Form>
-                                                ) : (
-                                                    <h4 className="text-center mt-3">Thông tin của bạn: {selectedProvince}</h4>
-                                                )}
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        {/* <Col xs={12} md={6} className="right-col">
-                            <img
-                                src={depositImg}
-                                alt="Bank Info Image"
-                                className="withraw-image"
-                            />
-                        </Col> */}
-                    </Row>
-                </Card>
-            </Row>
+                            {/* Nút submit */}
+                            <Button className='btn-login w-100 mt-3' type='submit' variant='primary'>
+                                Xác nhận
+                            </Button>
+                            </Form>
+                        ) : (
+                            <Form>
+                                <Form.Group>
+                                    <Form.Label>Thông tin của bạn</Form.Label>
+                                    <Form.Control
+                                        as="select"
+                                        name="province"
+                                        value={selectedProvince}
+                                        readOnly
+                                        className="readonly-input"
+                                        style={{ transition: 'all 0.3s ease-in-out' }}
+                                    >
+                                        <option value={selectedProvince}>{selectedProvince}</option>
+                                    </Form.Control>
+                                </Form.Group>
+                            </Form>
+                        )}
+                    </div>
+                </Col>
+            </div>
         </Container>
     );
 }

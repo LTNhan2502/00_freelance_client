@@ -1,0 +1,93 @@
+.withdraw-history-container{
+    width: 100%;
+    min-width: 700px;
+    padding-left: 0;
+    .py-pl{
+        padding: 40px 0 10px 20px;
+        text-align: start;
+
+        span{
+            color: white;
+            padding-right: 10px;
+        }
+
+        h1{
+            font-size: 1.275rem;
+            line-height: 1.75rem;
+            color: white;
+            margin: 0;
+        }
+    }
+
+    .withraw-history-row{
+        width: 100%;
+        padding-top: 10px;
+        margin-bottom: 80px;
+
+        .col-12{
+            padding: 0;
+            
+        }
+
+        .withdraw-history-card{
+            background-color: transparent;
+            color: white;
+            border: 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        h5{
+            color: white;
+        }
+    }
+
+}
+
+@media (max-width: 768px) {
+    .withdraw-history-container{
+        min-width: 320px;
+    }
+}
+
+@media (width: 390px) {
+    .withdraw-history-container{
+        min-width: 390px;
+    }
+}
+
+@media (width: 320px) {
+    .withdraw-history-container{
+        min-width: 320px;
+    }
+}
+
+@media (width: 412px) {
+    .withdraw-history-container{
+        min-width: 412px;
+    }
+}
+
+@media (width: 375px) {
+    .withdraw-history-container{
+        min-width: 375px;
+    }
+}
+
+@media (width: 414px) {
+    .withdraw-history-container{
+        min-width: 414px;
+    }
+}
+
+@media (width: 430px) {
+    .withdraw-history-container{
+        min-width: 430px;
+    }
+}
+
+@media (width: 768px) {
+    .withdraw-history-container{
+        min-width: 714px;
+
+    }
+}

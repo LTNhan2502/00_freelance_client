@@ -1,37 +1,54 @@
-.top-group-card{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border: 1px solid #dbdfe4;
-    border-radius: 20px;
-    padding: 10px auto;
-    
-    .tgc-element {
-        padding: 15px 20px;  
-        border-right: 1px solid #dbdfe4;  
-        flex: 1;  
-        text-align: center; 
-        cursor: pointer;
-        
-        &:last-child {
-            border-right: none; 
+
+
+.group-report-container-main {
+    width: 100%;
+    min-width: 670px;
+    padding: 0;
+    color: white;
+
+    .py-pl{
+        padding: 0 0 10px 20px;
+        text-align: start;
+
+        span{
+            color: white;
+            padding-right: 10px;
         }
 
-        &.active {
-            text-decoration: underline;
-            font-weight: bold;
+        h1{
+            font-size: 1.275rem;
+            line-height: 1.75rem;
+            color: white;
+            margin: 0;
         }
     }
-    
-}
 
-.group-report-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent;
-    padding: 10px;
-    border-bottom: 1px solid #dbdfe4;
+    .top-group-card{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        border: 1px solid #dbdfe4;
+        border-radius: 20px;
+        padding: 10px auto;
+        
+        .tgc-element {
+            padding: 15px 20px;  
+            border-right: 1px solid #dbdfe4;  
+            flex: 1;  
+            text-align: center; 
+            cursor: pointer;
+            
+            &:last-child {
+                border-right: none; 
+            }
+    
+            &.active {
+                text-decoration: underline;
+                font-weight: bold;
+            }
+        }
+        
+    }
   
     .user-info {
         display: flex;
@@ -67,28 +84,83 @@
             font-size: 14px;
         }
     }
+
+    .group-report-content{
+        padding: 10px;
+        border-bottom: 1px solid #7a797d;
+    }
 }
+
+// @media (max-width: 768px) {
+//     .avatar{
+//         width: 40px;
+//         height: 40px;
+//     }
+
+//     .user-details {
+//         .username {
+//             font-size: 12px;
+//         }
+
+//         .balance {
+//             font-size: 12px !important;
+//         }
+//     }
+
+//     .user-meta {
+//         p {
+//             font-size: 12px !important;
+//         }
+//     }
+// }
 
 @media (max-width: 768px) {
-    .avatar{
-        width: 40px;
-        height: 40px;
-    }
-
-    .user-details {
-        .username {
-            font-size: 12px;
-        }
-
-        .balance {
-            font-size: 12px !important;
-        }
-    }
-
-    .user-meta {
-        p {
-            font-size: 12px !important;
-        }
+    .group-report-container-main{
+        min-width: 320px;
     }
 }
+
+@media (width: 390px) {
+    .group-report-container-main{
+        min-width: 390px;
+    }
+}
+
+@media (width: 320px) {
+    .group-report-container-main{
+        min-width: 320px;
+    }
+}
+
+@media (width: 412px) {
+    .group-report-container-main{
+        min-width: 412px;
+    }
+}
+
+@media (width: 375px) {
+    .group-report-container-main{
+        min-width: 375px;
+    }
+}
+
+@media (width: 414px) {
+    .group-report-container-main{
+        min-width: 414px;
+    }
+}
+
+@media (width: 430px) {
+    .group-report-container-main{
+        min-width: 430px;
+    }
+}
+
+@media (width: 768px) {
+    .group-report-container-main{
+        min-width: 714px;
+
+    }
+}
+
   
