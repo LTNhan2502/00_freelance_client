@@ -75,10 +75,6 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
   const handleCloseCompanyInfo = () => setShowCompanyInfo(false);
   const handleShowCompanyInfo = () => setShowCompanyInfo(true);
 
-  // Handle quy tắc nền tảng
-  const handleCloseFoundationRules = () => setShowFoundationRules(false);
-  const handleShowFoundationRules = () => setShowFoundationRules(true);
-
   // Handle hợp tác phát triển
   const handleCloseCoOp = () => setShowCoOp(false);
   const handleShowCoOp = () => setShowCoOp(true);
@@ -111,17 +107,6 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
               </div>
             </div>
             <div>
-              {/* Sự kiện */}
-              <FontAwesomeIcon icon={faCalendar}
-                style={{
-                  fontSize: "1.8rem",
-                  color: "white",
-                  paddingRight: "10px",
-                  cursor: "pointer",
-                  marginRight: "10px"
-                }}
-                onClick={() => handleGoToEvent()}
-              />
               {/* Chuông thông báo */}
               <FontAwesomeIcon icon={faBell} 
                 style={{
@@ -175,7 +160,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
             </div>
           </div>
           <div className="right-field-money">
-            <div className="box box-click" onClick={() => handleWithraw()}>
+            <div className="box box-click" onClick={() => handleCustomerService()}>
               <div>
                 <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
               </div>
@@ -195,7 +180,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
           <div className="box">
             <Row className="top-left-box">
               {/* Hồ sơ công ty */}
-              <Col xs={4}>
+              <Col xs={3}>
                 <div onClick={handleShowCompanyInfo} className="box-click">
                   <FontAwesomeIcon
                     icon={faBuilding}
@@ -205,9 +190,21 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                 </div>
                 <div>Hồ sơ công ty</div>
               </Col>
+
+              {/* Sự kiện */}
+              <Col xs={3}>
+                <div onClick={handleGoToEvent} className="box-click">
+                  <FontAwesomeIcon
+                    icon={faCalendar}
+                    size="2x"
+                    className="company-info"
+                  />
+                </div>
+                <div>Sự kiện</div>
+              </Col>
               
               {/* Hợp tác phát triển */}
-              <Col xs={4}>
+              <Col xs={3}>
                 <div onClick={handleShowCoOp} className="box-click">
                   <FontAwesomeIcon
                     icon={faHandshake}
@@ -219,7 +216,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
               </Col>
 
               {/* Thư thông báo */}
-              <Col xs={4}>
+              <Col xs={3}>
                 <div>
                   <FontAwesomeIcon
                     icon={faEnvelopeOpenText}

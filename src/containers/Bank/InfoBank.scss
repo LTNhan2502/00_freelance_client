@@ -36,6 +36,7 @@
     background-color: transparent; 
     padding: 20px;
     color: white;
+    margin-bottom: 70px;
 }
 
 .btn-login {
@@ -50,10 +51,3 @@
     box-shadow: 5px 8px 10px #272c3e, 0 0 10px #272c3e;
 }
 
-
-
-@media (max-width: 768px) {
-    .bank-image {
-        display: none;
-    }
-}

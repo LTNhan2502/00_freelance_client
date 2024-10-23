@@ -35,42 +35,46 @@ export default function Profiles() {
     };
 
     const handleGoToDeposit = () => {
-        navigate("/deposit")
-      }
+      navigate("/deposit")
+    }
+
+    const handleGoToCustomerService = () => {
+      navigate("/customer-service")
+    }
+  
+    const handleGoToWithraw = () => {
+      navigate("/withraw")
+    }
     
-      const handleGoToWithraw = () => {
-        navigate("/withraw")
-      }
-      
-      const handleGoToDepositHistory = () => {
-        navigate("/deposit-history")
-      }
-    
-      const handleGoToBankAccount = () => {
-        navigate("/bank-account")
-      }
-    
-      const handleGoToWithrawHistory = () => {
-        navigate("/withraw-history")
-      }
-    
-      const handleGoToOrderHistory = () => {
-        navigate("/order-history")
-      }
-    
-      const handleGoToGroupReport = () => {
-        navigate("/group-report")
-      }
-    
-      const handleGoToAddress = () => {
-        navigate("/address")
-      }
-    
-      const onClickLogout = () => {
-        localStorage.removeItem("user_name");
-        localStorage.removeItem("access_token");
-        window.location.href = "/login";
-      };
+    const handleGoToDepositHistory = () => {
+      navigate("/deposit-history")
+    }
+  
+    const handleGoToBankAccount = () => {
+      navigate("/bank-account")
+    }
+  
+    const handleGoToWithrawHistory = () => {
+      navigate("/withraw-history")
+    }
+  
+    const handleGoToOrderHistory = () => {
+      navigate("/order-history")
+    }
+  
+    const handleGoToGroupReport = () => {
+      navigate("/group-report")
+    }
+  
+    const handleGoToAddress = () => {
+      navigate("/address")
+    }
+  
+    const onClickLogout = () => {
+      localStorage.removeItem("user_name");
+      localStorage.removeItem("access_token");
+      window.location.href = "/login";
+    };
 
     return (        
         <div className="warehouse-container">
@@ -97,7 +101,7 @@ export default function Profiles() {
 
                       {/* List navigate */}
                       <ul className="list-unstyled">
-                        <li><p onClick={() => handleGoToDeposit()}>Nạp tiền</p></li>
+                        <li><p onClick={() => handleGoToCustomerService()}>Nạp tiền</p></li>
                         <li><p onClick={() => handleGoToWithraw()}>Rút tiền</p></li>
                         <li><p onClick={() => handleGoToDepositHistory()}>Lịch sử nạp tiền</p></li>
                         <li><p onClick={() => handleGoToWithrawHistory()}>Lịch sử rút tiền</p></li>

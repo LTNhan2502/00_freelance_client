@@ -31,28 +31,84 @@
     }
 }
 
-.address-container {
-    select {
-        width: 100%; 
-        appearance: none; // Xóa mũi tên gốc của select trên một số trình duyệt để kiểm soát kiểu dáng
+.address-container-main{
+    width: 100%;
+    min-width: 680px;
+    color: white;
 
-        &::-ms-expand {
-            display: none; // Xóa mũi tên trên IE/Edge
+    .py-pl{
+        padding: 0 0 10px 20px;
+        text-align: start;
+
+        span{
+            color: white;
+            padding-right: 10px;
         }
 
+        h1{
+            font-size: 1.275rem;
+            line-height: 1.75rem;
+            color: white;
+            margin: 0;
+        }
     }
-    
-    .readonly-input {
-        background-color: #f5f5f5;
-        border: 1px solid #ddd;
-        pointer-events: none;
+
+    .address-container {    
+        .readonly-input {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            pointer-events: none;
+        }
     }
 }
 
 
 
 @media (max-width: 768px) {
-    .address-card{
-        width: 100% !important;
+    .address-container-main{
+        min-width: 320px;
     }
 }
+
+@media (width: 390px) {
+    .address-container-main{
+        min-width: 390px;
+    }
+}
+
+@media (width: 320px) {
+    .address-container-main{
+        min-width: 320px;
+    }
+}
+
+@media (width: 412px) {
+    .address-container-main{
+        min-width: 412px;
+    }
+}
+
+@media (width: 375px) {
+    .address-container-main{
+        min-width: 375px;
+    }
+}
+
+@media (width: 414px) {
+    .address-container-main{
+        min-width: 414px;
+    }
+}
+
+@media (width: 430px) {
+    .address-container-main{
+        min-width: 430px;
+    }
+}
+
+@media (width: 768px) {
+    .address-container-main{
+        min-width: 680px;
+    }
+}
+

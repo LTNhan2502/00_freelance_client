@@ -11,6 +11,13 @@ import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 
+const banks = [
+    'Agribank', 'BIDV', 'Vietcombank', 'Vietinbank', 'Techcombank',
+    'ACB', 'VPBank', 'SHB', 'HDBank', 'Standard Chartered Bank',
+    'HSBC', 'Citibank', 'ANZ Bank', 'Woori Bank Vietnam', 'ABBank',
+    'Bangkok Bank',
+];
+
 function InfoBank() {
     const navigate = useNavigate();
     const userName = localStorage.getItem("user_name")
@@ -71,7 +78,11 @@ function InfoBank() {
 
         }),
 
-        onSubmit: async(values) => {           
+        onSubmit: async(values) => {  
+            console.log(values);
+            return;
+
+                                 
             const registerBankAPI = await createBank(
                 values.nameBank, 
                 values.userBank, 
@@ -81,6 +92,7 @@ function InfoBank() {
 
             if(registerBankAPI && registerBankAPI.data.EC === 0) {
                 toast.success("Liên kết thành công")
+                setIsHaveAccount(true)
             } else {
                 console.log("Có lỗi xảy ra");
             }
@@ -106,7 +118,7 @@ function InfoBank() {
     };
 
     return (
-        <Container className='custom-container-bank-account py-5'>
+        <Container className='custom-container-bank-account'>
             <Row className='my-4 justify-content-center custom-row'>
                 <Card className="ct-bank-card"> 
                     <Row>
@@ -132,14 +144,23 @@ function InfoBank() {
                                                     <Form.Group className='mb-3'>
                                                         <Form.Label>Tên ngân hàng</Form.Label>
                                                         <Form.Control
-                                                            type='text'
+                                                            as='select'
                                                             name='nameBank'
                                                             placeholder='Tên ngân hàng'
                                                             value={ isHaveAccount ? userBankAccount.nameBank : formik.values.nameBank}
                                                             onChange={formik.handleChange}
                                                             isInvalid={formik.touched.nameBank && formik.errors.nameBank}
+                                                            className={`${formik.errors.nameBank && formik.touched.nameBank ? 'is-invalid' : ''}`}
                                                             disabled={isHaveAccount}
-                                                        />
+                                                            style={{ transition: 'all 0.3s ease-in-out' }}
+                                                        >
+                                                            <option value="">Chọn ngân hàng...</option>
+                                                            {banks.map((nameBank, index) => (
+                                                                <option key={index} value={nameBank}>
+                                                                {nameBank}
+                                                                </option>
+                                                            ))}
+                                                        </Form.Control>
                                                         <Form.Control.Feedback type="invalid"
                                                             style={{ minHeight: '1.25rem' }}
                                                         >

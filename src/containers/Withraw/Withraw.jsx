@@ -137,7 +137,7 @@ function Withraw() {
     }
 
     return (
-        <Container className='custom-container-bank-account py-5'>
+        <Container className='custom-container-bank-account'>
             <Row className='my-4 justify-content-center custom-row'>
                 <Card className="ct-bank-card"> 
                     <Row>
