@@ -77,7 +77,7 @@ export default function Profiles() {
     };
 
     return (        
-        <div className="warehouse-container">
+        <Container className="profile-container">
             <div className="info-panel">
                 <Card className="info-card">
                   <Card.Body>
@@ -116,6 +116,6 @@ export default function Profiles() {
                   </Card.Body>
                 </Card>
             </div>
-        </div>        
+        </Container>        
     );
 }

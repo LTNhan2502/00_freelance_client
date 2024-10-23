@@ -1,6 +1,6 @@
 .withdraw-history-container{
     width: 100%;
-    min-width: 700px;
+    min-width: 570px;
     padding-left: 0;
     .py-pl{
         padding: 40px 0 10px 20px;
@@ -38,56 +38,68 @@
 
         h5{
             color: white;
+            width: 100%;
         }
     }
 
 }
 
-@media (max-width: 768px) {
-    .withdraw-history-container{
-        min-width: 320px;
-    }
+@media (min-width: 768px) {
+  .withdraw-history-container {
+    min-width: 570px;
+  }
 }
 
-@media (width: 390px) {
-    .withdraw-history-container{
-        min-width: 390px;
-    }
+@media (min-width: 320px) and (max-width: 344px) {
+  .withdraw-history-container {
+    min-width: 320px;
+  }
 }
 
-@media (width: 320px) {
-    .withdraw-history-container{
-        min-width: 320px;
-    }
+@media (min-width: 344px) and (max-width: 360px) {
+  .withdraw-history-container {
+    min-width: 344px;
+  }
 }
 
-@media (width: 412px) {
-    .withdraw-history-container{
-        min-width: 412px;
-    }
+@media (min-width: 360px) and (max-width: 375px) {
+  .withdraw-history-container {
+    min-width: 360px;
+  }
 }
 
-@media (width: 375px) {
-    .withdraw-history-container{
-        min-width: 375px;
-    }
+@media (min-width: 375px) and (max-width: 390px) {
+  .withdraw-history-container {
+    min-width: 375px;
+  }
 }
 
-@media (width: 414px) {
-    .withdraw-history-container{
-        min-width: 414px;
-    }
+@media (min-width: 390px) and (max-width: 400px) {
+  .withdraw-history-container {
+    min-width: 390px;
+  }
 }
 
-@media (width: 430px) {
-    .withdraw-history-container{
-        min-width: 430px;
-    }
+@media (min-width: 400px) and (max-width: 412px) {
+  .withdraw-history-container {
+    min-width: 412px;
+  }
 }
 
-@media (width: 768px) {
-    .withdraw-history-container{
-        min-width: 714px;
+@media (min-width: 414px) and (max-width: 430px) {
+  .withdraw-history-container {
+    min-width: 414px;
+  }
+}
 
-    }
+@media (min-width: 430px) and (max-width: 540px) {
+  .withdraw-history-container {
+    min-width: 430px;
+  }
+}
+
+@media (min-width: 540px) and (max-width: 767px) {
+  .withdraw-history-container {
+    min-width: 540px;
+  }
 }
