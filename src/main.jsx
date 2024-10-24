@@ -21,12 +21,16 @@ import Group from './containers/GroupReport/Group';
 import OrderHistory from './containers/OrderHistory/OrdeHistory';
 import HotProduct from './containers/Home/HotProduct';
 import Profiles from './containers/Profiles/Profiles';
+import IndexPage from './containers/Index/IndexPage';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>      
       <Routes>
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" 
+          // element={localStorage.getItem("access_token") ? <Navigate to="/home" /> : <IndexPage/>} 
+          element={<IndexPage/>}
+        />
         <Route path="/" element={<App />} >
           <Route 
             index

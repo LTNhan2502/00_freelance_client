@@ -29,4 +29,11 @@ const getAllHistoryBank = () => {
     return instance.get(URL_API);
 }
 
-export { createBank, getBankByUserId, reqWithdrawal, reqDeposit, getAllHistoryBank }
+// API lấy lịch sử nạp dựa theo userId
+const getAllHistoryBankID = (userId) => {
+    const URL_API = "v1/api/getAllHistoryBankID";
+    const data = {userId};
+    return instance.get(URL_API, data);
+}
+
+export { createBank, getBankByUserId, reqWithdrawal, reqDeposit, getAllHistoryBank, getAllHistoryBankID }

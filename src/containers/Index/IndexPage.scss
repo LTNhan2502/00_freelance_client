@@ -1,0 +1,130 @@
+.index-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh; 
+    text-align: center;
+    background-image: url('../../assets/first-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 0;
+      }
+
+    .index-header{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        color: white;
+        text-align: center;
+
+        .header-brand{
+            font-family: "Roboto Slab", serif !important;
+            font-size: 98.28px;
+            line-height: 1.2;
+            color: white;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            z-index: 1;
+        }
+    
+        .header-element{
+            font-size: 30px;
+            color: white;
+            line-height: 1;
+            font-family: "Open Sans", sans-serif;
+            text-align: center;
+            margin-bottom: 180px;
+            z-index: 1;
+        }
+
+        .paragraph {
+            font-family: Roboto, sans-serif;
+            font-size: 17px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            max-width: 55%;
+            text-align: center;
+        }
+    }
+
+    
+
+    .button-container{
+        display: flex;
+        justify-content: center;
+
+        .button-content {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: rgb(255, 222, 89);
+            border-radius: 0px; 
+            padding: 33px 88px; 
+            max-width: 627px;
+            gap: 20px;
+        }
+          
+        .go-to-login-btn, .go-to-register-btn {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            min-width: 160px;
+        }
+          
+        .go-to-login-btn:hover, .go-to-register-btn:hover {
+            background-color: darkgray;
+        }
+    }
+      
+}
+
+@media (max-width: 768px) {
+    .index-header{
+        .header-brand {
+            font-size: 47.29px !important; 
+            line-height: 1.6 !important;
+        }
+    
+        .header-element {
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+        }
+    
+        .paragraph {
+            font-size: 11px !important;
+            line-height: 1.4 !important;
+        }
+
+        .button-container{
+            .button-content {
+                padding: 25px !important;
+                gap: 17px !important;
+            }
+        
+            .go-to-login-btn, .go-to-register-btn {
+                font-size: 4vw;
+                min-width: 30vw;
+            }
+        } 
+    }
+
+}
+  
+  

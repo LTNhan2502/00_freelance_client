@@ -19,6 +19,7 @@ const formatCurrency = (amount) => {
 };
 
 function App({ children }) {
+  const isAuth = localStorage.getItem("access_token");
   const location = useLocation()
   const isEventPage = location.pathname.includes("/events")
   const isLoginPage = location.pathname.includes("/login")
@@ -28,7 +29,6 @@ function App({ children }) {
 
   return (
     <CurrencyContext.Provider value={{ formatCurrency  }}>
-      <div className="main-container-image"></div>
       <div className={`main-container ${targetBackground}`}>
         <div className="content-container">            
           {/* <div className="content"> */}
@@ -42,7 +42,7 @@ function App({ children }) {
 
       {/* Toastify dùng để hiển thị thông báo */}
       <ToastContainer
-        position="top-right"
+        position="top-center"
         autoClose={2500}
         hideProgressBar={false}
         newestOnTop={false}
