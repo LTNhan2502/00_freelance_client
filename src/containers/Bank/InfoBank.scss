@@ -52,24 +52,39 @@
 }
 
 .autocomplete-dropdown {
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    max-height: 200px;
-    overflow-y: auto;
-    position: absolute;
-    width: 100%;
-    background-color: white;
-    color: black;
-    z-index: 1000;
-}
-
-.autocomplete-item {
-    padding: 10px;
+    border: 1px solid #ddd; /* Viền nhạt hơn */
+    max-height: 200px; /* Giới hạn chiều cao tối đa */
+    overflow-y: auto; /* Hiển thị thanh cuộn khi cần */
+    position: absolute; /* Đặt dropdown ngay dưới input */
+    width: 100%; /* Đảm bảo kích thước bằng với input */
+    background-color: #fff; /* Màu nền trắng */
+    z-index: 1000; /* Đảm bảo dropdown luôn nổi trên các thành phần khác */
+    border-radius: 8px; /* Bo góc cho hộp dropdown */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động */
+  }
+  
+  .autocomplete-item {
+    padding: 12px; /* Khoảng cách padding lớn hơn */
     cursor: pointer;
-}
-
-.autocomplete-item:hover {
-    background-color: #f1f1f1;
-}
+    font-size: 0.875rem; /* Kích thước chữ nhỏ */
+    color: #333; /* Màu chữ tối để dễ nhìn */
+    border-bottom: 1px solid #eee; /* Viền phân cách giữa các item */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+  }
+  
+  .autocomplete-item:last-child {
+    border-bottom: none; /* Loại bỏ viền cho item cuối cùng */
+  }
+  
+  .autocomplete-item:hover {
+    background-color: #f1f1f1; /* Màu nền nhạt hơn khi hover */
+    color: #007bff; /* Màu chữ khi hover */
+  }
+  
+  .autocomplete-item:active {
+    background-color: #e0e0e0; /* Màu nền khi nhấn */
+  }
+  
 
 
