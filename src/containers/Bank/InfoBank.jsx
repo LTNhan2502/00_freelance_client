@@ -38,6 +38,20 @@ function InfoBank() {
     const [isHaveAccount, setIsHaveAccount] = useState(false)
     const [userBankAccount, setUserBankAccount] = useState(null)
     const [showPassword, setShowPassword] = useState(false);
+    const [filteredBanks, setFilteredBanks] = useState(banks); // Tạo danh sách gợi ý ban đầu
+    const [isClick, setIsClick] = useState(false);
+
+    // Hàm xử lý khi nhập vào ô input
+    const handleInputChange = (event) => {
+        const { value } = event.target;
+
+        // Lọc danh sách ngân hàng dựa vào ký tự nhập
+        const filtered = banks.filter((bank) =>
+            bank.toLowerCase().includes(value.toLowerCase()) // Kiểm tra có chứa chuỗi nhập vào
+        );
+        setFilteredBanks(filtered); // Cập nhật danh sách ngân hàng
+        formik.handleChange(event); // Giữ lại xử lý của formik
+    };
 
     useEffect(() => {
         fetchThisUser()
@@ -157,23 +171,37 @@ function InfoBank() {
                                                     <Form.Group className='mb-3'>
                                                         <Form.Label>Tên ngân hàng</Form.Label>
                                                         <Form.Control
-                                                            as='select'
-                                                            name='nameBank'
-                                                            placeholder='Tên ngân hàng'
-                                                            value={ isHaveAccount ? userBankAccount?.nameBank : formik.values.nameBank}
-                                                            onChange={formik.handleChange}
-                                                            // isInvalid={formik.touched.nameBank && formik.errors.nameBank}
+                                                            type="text"
+                                                            name="nameBank"
+                                                            placeholder="Nhập tên ngân hàng"
+                                                            value={isHaveAccount ? userBankAccount?.nameBank : formik.values.nameBank}
+                                                            onChange={handleInputChange}
+                                                            onFocus={() => setIsClick(true)} // Khi người dùng click vào input, hiển thị dropdown
+                                                            onBlur={() => setTimeout(() => setIsClick(false), 100)} // Ẩn dropdown khi input mất focus, thêm độ trễ để xử lý chọn gợi ý
                                                             className={`${formik.errors.nameBank && formik.touched.nameBank ? 'is-invalid' : ''}`}
                                                             disabled={isHaveAccount}
-                                                            style={{ transition: 'all 0.3s ease-in-out' }}
-                                                        >
-                                                            <option value="">Chọn ngân hàng...</option>
-                                                            {banks.map((nameBank, index) => (
-                                                                <option key={index} value={nameBank}>
+                                                            autoComplete="off" // Tắt autoComplete mặc định của trình duyệt
+                                                            style={{ transition: "all 0.3s ease-in-out" }}
+                                                        />
+
+                                                        {/* Hiển thị gợi ý tên ngân hàng */}
+                                                        {!isHaveAccount && isClick && filteredBanks.length > 0 && (
+                                                            <div className="autocomplete-dropdown">
+                                                            {filteredBanks.map((nameBank, index) => (
+                                                                <div
+                                                                    key={index}
+                                                                    className="autocomplete-item"
+                                                                    onClick={() => {
+                                                                        formik.setFieldValue("nameBank", nameBank); // Cập nhật giá trị khi người dùng chọn
+                                                                        setFilteredBanks([]); // Ẩn danh sách sau khi chọn
+                                                                    }}
+                                                                >
                                                                 {nameBank}
-                                                                </option>
+                                                                </div>
                                                             ))}
-                                                        </Form.Control>
+                                                            </div>
+                                                        )}
+                                                        
                                                         <Form.Control.Feedback type="invalid"
                                                             style={{ minHeight: '1.25rem' }}
                                                         >

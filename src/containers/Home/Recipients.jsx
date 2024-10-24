@@ -60,11 +60,7 @@ export default function Recipients() {
 
     return (
         <Container className="full-height-container p-0 mt-3">
-            <h3 className="text-white fs-6 fw-bold"
-                style={{
-                    paddingLeft: "16px"
-                }}
-            >Danh sách lợi nhuận thành viên toàn cầu</h3>
+            <h2 className="level-member-h2">Danh sách lợi nhuận thành viên toàn cầu</h2>
             <Card className="h-100 blur-card text-center" style={{ marginBottom: "8rem" }}>
                 <Card.Body>
                     <div style={{

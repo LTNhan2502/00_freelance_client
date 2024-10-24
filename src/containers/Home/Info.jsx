@@ -150,22 +150,19 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
 
         {/* Info */}
         <div className="field-money">
+          {/* Số dư */}
           <div className="left-field-money">
-            <div className="box">
-              <div className="d-flex justify-content-start align-items-center">
+            <div className="box left-box">
+              <div className="left-box-content">
                 <FontAwesomeIcon icon={faWallet} size="2x" />
                 <span className="p">Số dư khả dụng</span>
               </div>
               <div className="d-flex justify-content-start">{`${userAmount} €`}</div>
             </div>
           </div>
+
+          {/* Nạp tiền, rút tiền */}
           <div className="right-field-money">
-            <div className="box box-click" onClick={() => handleWithraw()}>
-              <div>
-                <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
-              </div>
-              <div>Rút tiền</div>
-            </div>
 
             <div className="box box-click" onClick={() => handleCustomerService()}>
               <div>
@@ -173,12 +170,20 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
               </div>
               <div>Nạp tiền</div>
             </div>
+            
+            <div className="box box-click" onClick={() => handleWithraw()}>
+              <div>
+                <FontAwesomeIcon icon={faArrowsDownToLine} size="2x" />
+              </div>
+              <div>Rút tiền</div>
+            </div>
           </div>
         </div>
         
         <Col xs={12}>
-          <div className="box">
-            <Row className="top-left-box">
+          <h2 className="general-h2">Tổng quan Mercado Libre</h2>
+          <div className="general-box">
+            <Row className="general-content-box">
               {/* Hồ sơ công ty */}
               <Col xs={3}>
                 <div onClick={handleShowCompanyInfo} className="box-click">

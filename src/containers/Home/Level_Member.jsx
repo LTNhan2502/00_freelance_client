@@ -54,7 +54,7 @@ function Level_Member() {
 
   return (
     <Container className="full-height-container p-0 mt-3">
-      <h3 className="text-white fs-4 fw-bold">Cấp thành viên</h3>
+      <h2 className="level-member-h2">Cấp thành viên</h2>
       {dataSource.map((level, index) => (
         <Row key={index} className="mb-3">
           <Col>
@@ -74,7 +74,7 @@ function Level_Member() {
                         {level.packageName}
                       </span>
                     </div>
-                    <Card.Text>
+                    <Card.Text style={{ paddingBottom: "20px" }}>
                       <div className="d-flex justify-content-around text-center">
                         <div>
                           <div>Phí nâng cấp</div>

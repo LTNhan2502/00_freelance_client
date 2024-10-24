@@ -27,12 +27,41 @@
     flex-direction: row;
     justify-content: space-between;
 
+    .box{
+        padding: 0.5rem;
+        background-color: transparent;
+        backdrop-filter: blur(6px);
+        padding: 7px;
+        margin-bottom: 15px;
+        border: 1px solid #dbdfe4;
+        border-radius: 13px;
+        color: white;
+        text-align: center;
+        font-size: 0.8rem;
+
+        &.left-box{
+            padding: 12px;
+
+            .left-box-content{
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                
+                .p{
+                    padding-left: 6px;
+                }
+            }
+        }
+    }
+
     .right-field-money{
         display: flex;
         gap: 0.75rem;
         flex-direction: row;
     }
 }
+
+
 
 .blur-card {
     background-color: transparent !important;
@@ -44,17 +73,33 @@
 
 .font-medium{
     font-weight: 700;
+    
+    .general-h2{
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.25rem;
+        margin: 12px 0 8px 0;
+    }
 
-    .box {
+    .general-box {
         background-color: transparent;
         backdrop-filter: blur(6px);
-        padding: 7px;
+        padding: 22px 3px;
         margin-bottom: 15px;
         border: 1px solid #dbdfe4;
         border-radius: 13px;
         color: white;
         text-align: center;
         font-size: 0.8rem;
+
+
+        .general-content-box{
+            font-size: 0.875rem !important;
+            line-height: 1.25rem;
+            font-weight: normal;
+
+        }
     
         .p{
             padding-left: 10px;

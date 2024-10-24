@@ -31,7 +31,7 @@ function Address() {
     };
 
     return (
-        <Container className='address-container-main py-5'>
+        <div className='address-container-main py-5'>
             <div className='d-flex align-items-center py-pl'>
                 <span onClick={handleGoToHome}>
                     <FontAwesomeIcon icon={faAngleLeft}/>
@@ -83,7 +83,7 @@ function Address() {
                     </div>
                 </Col>
             </div>
-        </Container>
+        </div>
     );
 }
 

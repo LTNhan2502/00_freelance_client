@@ -296,28 +296,40 @@ function HotProduct() {
             <Card className="mt-4 distribution-card">
                 <Card.Body>
                     <Row>
-                        <Col className="text-start"><p><strong>Số dư:</strong></p></Col>
-                        <Col className="text-end"><p>{`${userAmount} €`}</p></Col>
+                        <div className='d-flex justify-content-between'>
+                            <span>Số dư:</span>
+                            <span>{`${userAmount} €`}</span>
+                        </div>
                     </Row>
                     <Row>
-                        <Col className="text-start"><p><strong>Cấp hiện tại:</strong></p></Col>
-                        <Col className="text-end"><p>{thisUser?.memberId?.packageName || 'Không'}</p></Col>
+                        <div className='d-flex justify-content-between'>
+                            <span>Cấp hiện tại:</span>
+                            <span>{thisUser?.memberId?.packageName || 'Không'}</span>
+                        </div>
                     </Row>
                     <Row>
-                        <Col className='text-start'><p><strong>Chiết khấu:</strong></p></Col>
-                        <Col className="text-end"><p>{`${thisUser?.memberId?.discountFrom || 0}% - ${thisUser?.memberId?.discountTo || 0}%`}</p></Col>
+                        <div className='d-flex justify-content-between'>
+                            <span>Chiết khấu:</span>
+                            <span>{`${thisUser?.memberId?.discountFrom || 0}% - ${thisUser?.memberId?.discountTo || 0}%`}</span>
+                        </div>
                     </Row>
                     <Row>
-                        <Col className='text-start'><p><strong>Đơn hàng đã phân phối:</strong></p></Col>
-                        <Col className="text-end"><p>{`${thisUser?.distributionTurn || 0}/${thisUser?.memberId?.distribution || 0}`}</p></Col>
+                        <div className='d-flex justify-content-between'>
+                            <span>Đơn hàng đã phân phối:</span>
+                            <span>{`${thisUser?.distributionTurn || 0}/${thisUser?.memberId?.distribution || 0}`}</span>
+                        </div>
                     </Row>
                     <Row>
-                        <Col className='text-start'><p><strong>Chiết khấu hôm qua:</strong></p></Col>
-                        <Col className="text-end"><p>0 €</p></Col>
+                        <div className='d-flex justify-content-between'>
+                            <span>Chiết khấu hôm qua:</span>
+                            <span>0 €</span>
+                        </div>
                     </Row>
                     <Row>
-                        <Col className='text-start'><p><strong>Chiết khấu hôm nay:</strong></p></Col>
-                        <Col className="text-end"><p>{`${updatedProfit} €`}</p></Col>
+                        <div className='d-flex justify-content-between'>
+                            <span>Chiết khấu hôm nay:</span>
+                            <span>{`${updatedProfit} €`}</span>
+                        </div>
                     </Row>
                 </Card.Body>
             </Card>
@@ -325,6 +337,7 @@ function HotProduct() {
             <Card className="mt-4 app-rules-card">
                 <Card.Body>
                     <Row>
+                        <h2 className='text-foundation-rules'>GIỚI THIỆU QUY TẮC NỀN TẢNG</h2>
                         <Col md={12} className="text-start">
                             <p>Khi bạn trở thành thành viên Mercado Libre, bạn sẽ nhận được các mã sản phẩm có liên quan về đơn đặt hàng , bao gồm thông tin sản phẩm chi tiết đơn hàng , giá trị sản phẩm , số lượng ...vv..</p>
                             <p>Thành viên của Mercado Libre sẽ là nhà trung gian giúp  xác nhận đơn hàng giữa các NHÀ SẢN XUẤT & QUÝ ĐỐI TÁC ( người đặt mua ).</p>

@@ -1,40 +1,9 @@
-.custom-container-bank-account {
-    .address-card{
-        width: 60%;
-    }
-    .form-select {
-        animation: slide-down 0.3s ease-in-out;
-    }
-
-    @keyframes slide-down {
-        from {
-            transform: translateY(-10px);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    .ct-card {
-        .invalid-feedback {
-            color: red;
-        }
-    }
-
-    .btn-login {
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: darkblue;
-        }
-    }
-}
-
 .address-container-main{
     width: 100%;
-    min-width: 680px;
+    min-width: 570px;
+    max-width: 570px;
     color: white;
+    overflow-x: hidden;
 
     .py-pl{
         padding: 0 0 10px 20px;
@@ -53,7 +22,9 @@
         }
     }
 
-    .address-container {    
+    .address-container {  
+        padding: 0 20px;
+  
         .readonly-input {
             background-color: #f5f5f5;
             border: 1px solid #ddd;
@@ -64,51 +35,63 @@
 
 
 
-@media (max-width: 768px) {
-    .address-container-main{
+@media (min-width: 768px) {
+    .address-container-main {
+      min-width: 570px;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 344px) {
+    .address-container-main {
         min-width: 320px;
     }
 }
 
-@media (width: 390px) {
-    .address-container-main{
-        min-width: 390px;
+@media (min-width: 344px) and (max-width: 360px) {
+    .address-container-main {
+        min-width: 344px;
     }
 }
 
-@media (width: 320px) {
-    .address-container-main{
-        min-width: 320px;
+@media (min-width: 360px) and (max-width: 375px) {
+    .address-container-main {
+        min-width: 360px;
     }
 }
 
-@media (width: 412px) {
-    .address-container-main{
-        min-width: 412px;
-    }
-}
-
-@media (width: 375px) {
-    .address-container-main{
+@media (min-width: 375px) and (max-width: 390px) {
+    .address-container-main {
         min-width: 375px;
     }
 }
 
-@media (width: 414px) {
-    .address-container-main{
+@media (min-width: 390px) and (max-width: 400px) {
+    .address-container-main {
+        min-width: 390px;
+    }
+}
+
+@media (min-width: 400px) and (max-width: 412px) {
+    .address-container-main {
+        min-width: 412px;
+    }
+}
+
+@media (min-width: 414px) and (max-width: 430px) {
+    .address-container-main {
         min-width: 414px;
     }
 }
 
-@media (width: 430px) {
-    .address-container-main{
+@media (min-width: 430px) and (max-width: 540px) {
+    .address-container-main {
         min-width: 430px;
     }
 }
 
-@media (width: 768px) {
-    .address-container-main{
-        min-width: 570px;
+@media (min-width: 540px) and (max-width: 767px) {
+    .address-container-main {
+        min-width: 540px;
     }
 }
 

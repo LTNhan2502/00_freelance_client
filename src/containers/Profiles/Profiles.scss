@@ -14,12 +14,27 @@
 
       .info-card-top{
         display: flex;
-        flex-direction: column;
-        justify-content: end;
-        align-items: end;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 20px;
         color: white;
         font-size: 14px;
+
+        .card-top-left{
+          img{
+            width: 48px;
+            height: 27px;
+            object-fit: cover;
+          }
+        }
+
+        .card-top-right{
+          display: flex;
+          flex-direction: column;
+          justify-content: end;
+          align-items: end;
+        }
       }
 
       .info-card-mid{

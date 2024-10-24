@@ -6,10 +6,14 @@ import Navi from "../containers/Navigation/Navi";
 function App() {
   const location = useLocation()
   const isEventPage = location.pathname.includes("/events")
+  const isLoginPage = location.pathname.includes("/login")
+  const isRegisterPage = location.pathname.includes("/register")
+
+  const targetBackground = isEventPage ? "event-background" : (isLoginPage ||  isRegisterPage) ? "auth-background" : "default-background"
   return (
     <>
         <div className="main-container-image"></div>
-        <div className={`main-container ${isEventPage ? "event-background" : "default-background"}`}>
+        <div className={`main-container ${targetBackground}`}>
           <div className="content-container">            
             {/* <div className="content"> */}
               <Outlet/>

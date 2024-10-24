@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button, Card, Collapse, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Profiles.scss';
 import { getOneUserByUsername } from '../../utils/userAPI';
-import { useNavigate } from 'react-router-dom';
+import logo_profile from '../../assets/logo-me.png';
+import { toast } from "react-toastify";
+import './Profiles.scss';
 
 export default function Profiles() {
     const [thisUser, setThisUser] = useState(null)
@@ -70,6 +72,29 @@ export default function Profiles() {
       navigate("/address")
     }
   
+    // const onClickLogout = () => {
+    //   toast.info(
+    //     <div>
+    //       <p>Bạn có chắc chắn muốn đăng xuất không?</p>
+    //       <button onClick={handleConfirmLogout} style={{ marginRight: "10px" }}>
+    //         Có
+    //       </button>
+    //       <button onClick={toast.dismiss}>Không</button>
+    //     </div>,
+    //     {
+    //       position: "top-center",
+    //       autoClose: false,
+    //     }
+    //   );
+    // };
+    
+    // const handleConfirmLogout = () => {
+    //   localStorage.removeItem("user_name");
+    //   localStorage.removeItem("access_token");
+    //   toast.dismiss();
+    //   window.location.href = "/login";
+    // };
+
     const onClickLogout = () => {
       localStorage.removeItem("user_name");
       localStorage.removeItem("access_token");
@@ -83,8 +108,13 @@ export default function Profiles() {
                   <Card.Body>
                       {/* Username, ID */}
                       <div className="info-card-top">
-                        <span>{thisUser?.userName}</span>
-                        <span>ID: {thisUser?._id}</span>
+                        <div className='card-top-left'>
+                          <img src={logo_profile} alt="logo" />
+                        </div>
+                        <div className='card-top-right'>
+                          <span>{thisUser?.userName}</span>
+                          <span>ID: {thisUser?._id}</span>
+                        </div>
                       </div>
 
                       {/* Card general info */}

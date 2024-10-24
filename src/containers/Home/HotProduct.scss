@@ -43,9 +43,10 @@
     color: white;
     border-radius: 7px;
     border: 1px solid #dbdfe4 !important;
-    font-size: 0.85rem !important;
-
-    p{
+    line-height: 1.25rem;    
+    
+    span{
+        font-size: 14px !important;
         margin-bottom: 0;
     }
 }
@@ -57,6 +58,14 @@
     border: 1px solid #dbdfe4 !important;
     font-size: 0.93rem;
     margin-bottom: 5rem;
+
+    .text-foundation-rules{
+        text-align: center;
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.25rem;
+    }
 }
 
 .modal-content{
@@ -120,11 +129,6 @@
 
 
 @media (max-width: 768px) {
-    .distribution-card{    
-        p{
-            font-size: 12px !important;
-        }
-    }
     .received-product-card {
         flex-direction: column !important;
         align-items: center;
