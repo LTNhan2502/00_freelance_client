@@ -1,9 +1,11 @@
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap';
+import { CurrencyContext } from '../App';
 
 function DepositHistory() {
+    const {formatCurrency} = useContext(CurrencyContext)
     // Giả lập lịch sử rút tiền
     const [DepositHistory, setDepositHistory] = useState([])
 
@@ -54,8 +56,8 @@ function DepositHistory() {
                                         <Row className='warehouse-general'>
                                             <Col>
                                                 <Card.Text>
-                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số tiền: +{history.deposit} €</p>
-                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số dư: {history.amount} €</p>                                                    
+                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số tiền: +{formatCurrency(history?.deposit)} €</p>
+                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số dư: {formatCurrency(history?.amount)} €</p>                                                    
                                                 </Card.Text>
                                             </Col>
                                             <Col className="text-end">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Modal, Button, Card } from "react-bootstrap";
 import {
@@ -16,8 +16,10 @@ import { getOneUserByUsername } from "../../utils/userAPI";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { faBell, faCalendar, faHandshake } from "@fortawesome/free-regular-svg-icons";
+import { CurrencyContext } from '../App.jsx'
 
 export default function Info({ userAmount, setUserAmount, thisUser }) {
+  const { formatCurrency } = useContext(CurrencyContext)
   const defaultAmount = 0;
   const userName = localStorage.getItem("user_name");
   const navigate = useNavigate()
@@ -54,6 +56,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
   useEffect(() => {
     fetchUserAmount();
   }, [userName, userAmount]);
+
 
   const handleGoToEvent = () => {
     navigate("/events")
@@ -157,7 +160,7 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                 <FontAwesomeIcon icon={faWallet} size="2x" />
                 <span className="p">Số dư khả dụng</span>
               </div>
-              <div className="d-flex justify-content-start">{`${userAmount} €`}</div>
+              <div className="d-flex justify-content-start">{`${formatCurrency(userAmount)} €`}</div>
             </div>
           </div>
 

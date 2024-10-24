@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, Col, Container, Row, Button, Modal } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { getImages } from '../../utils/getImage';
@@ -6,8 +6,10 @@ import { getProductWaiting, profitDistribution } from '../../utils/product';
 import { getOneUserByUsername } from '../../utils/userAPI';
 import businessImg from '../../assets/background-distribute.jpg';
 import './Warehouse.scss';
+import { CurrencyContext } from '../App';
 
 function Warehouse() {
+    const {formatCurrency} = useContext(CurrencyContext)
     const userName = localStorage.getItem("user_name");
     const [userAmount, setUserAmount] = useState(0);
     const defaultAmount = 0;
@@ -133,7 +135,7 @@ function Warehouse() {
                     <span className='text-xs'>Dữ liệu được cung cấp bởi Mercado Libre</span>
                 </div>
                 <div className='py-20'>
-                    <h1 className='text-amount'>0 €</h1>
+                    <h1 className='text-amount'>{`${formatCurrency(userAmount)} €`}</h1>
                     <span className='text-xs'>Số dư (€)</span>
                 </div>
             </div>

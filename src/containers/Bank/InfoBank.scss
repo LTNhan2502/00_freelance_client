@@ -65,25 +65,25 @@
   }
   
   .autocomplete-item {
-    padding: 12px; /* Khoảng cách padding lớn hơn */
+    padding: 12px; 
     cursor: pointer;
-    font-size: 0.875rem; /* Kích thước chữ nhỏ */
-    color: #333; /* Màu chữ tối để dễ nhìn */
-    border-bottom: 1px solid #eee; /* Viền phân cách giữa các item */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+    font-size: 0.875rem;
+    color: #333; 
+    border-bottom: 1px solid #eee; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
   }
   
   .autocomplete-item:last-child {
-    border-bottom: none; /* Loại bỏ viền cho item cuối cùng */
+    border-bottom: none; 
   }
   
   .autocomplete-item:hover {
-    background-color: #f1f1f1; /* Màu nền nhạt hơn khi hover */
-    color: #007bff; /* Màu chữ khi hover */
+    background-color: #f1f1f1; 
+    color: #007bff; 
   }
   
   .autocomplete-item:active {
-    background-color: #e0e0e0; /* Màu nền khi nhấn */
+    background-color: #e0e0e0; 
   }
   
 

@@ -12,23 +12,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { toast } from 'react-toastify';
 
 const banks = [
-    'Agribank', 'BIDV', 'Vietcombank', 'Vietinbank', 'Techcombank', 
-    'ACB', 'VPBank', 'SHB', 'HDBank', 'Standard Chartered Bank', 
-    'HSBC', 'Citibank', 'ANZ Bank', 'ABBank', 'Bangkok Bank', 
-    'Barclays Lloyds', 'Banking Group', 'Royal Bank of Scotland (RBS)', 
-    'Santander UK', 'Société Générale', 'Crédit Agricole', 'Crédit Lyonnais (LCL)', 
-    'Mitsubishi UFJ (MUFG)', 'Sumitomo Mitsui Trust', 'Mizuho', 'Resona', 
-    'Shinsei', 'UniCredit', 'Cassa Depositi e Prestiti', 'Banco BPM', 
-    'NongHyup Bank', 'Shinhan', 'KB (Kookmin Bank)', 'Woori', 
-    'VBSP', 'NCB', 'Sacombank', 'Maritime Bank', 'TPBank', 
-    'OCB', 'LienVietPostBank', 'Vietnam Post', 'Viet A Bank', 'HPBank', 
-    'KienLong Bank', 'Nam A Bank', 'GPBank', 'PVcomBank', 'Bac A Bank', 
-    'Viet Capital Bank', 'Indovina Bank', 'VRB', 'UOB', 
-    'Hong Leong', 'Maybank', 'Eximbank', 'VIB', 'DongA Bank', 
-    'SGB', 'CBB', 'Cathay United', 'JP Morgan', 'Bank of Tokyo-Mitsubishi UFJ', 
-    'Shanghai Pudong Development Bank', 'Taiwan Cooperative Bank', 'Qatar National Bank', 
+    'Agribank', 'BIDV', 'Vietcombank', 'Vietinbank', 'Techcombank',
+    'ACB', 'VPBank', 'SHB', 'HDBank', 'Standard Chartered Bank',
+    'HSBC', 'Citibank', 'ANZ Bank', 'ABBank', 'Bangkok Bank',
+    'Barclays Lloyds', 'Banking Group', 'Royal Bank of Scotland (RBS)',
+    'Santander UK', 'Société Générale', 'Crédit Agricole', 'Crédit Lyonnais (LCL)',
+    'Mitsubishi UFJ (MUFG)', 'Sumitomo Mitsui Trust', 'Mizuho', 'Resona',
+    'Shinsei', 'UniCredit', 'Cassa Depositi e Prestiti', 'Banco BPM',
+    'NongHyup Bank', 'Shinhan', 'KB (Kookmin Bank)', 'Woori',
+    'VBSP', 'NCB', 'Sacombank', 'Maritime Bank', 'TPBank',
+    'OCB', 'LienVietPostBank', 'Vietnam Post', 'Viet A Bank', 'HPBank',
+    'KienLong Bank', 'Nam A Bank', 'GPBank', 'PVcomBank', 'Bac A Bank',
+    'Viet Capital Bank', 'Indovina Bank', 'VRB', 'UOB',
+    'Hong Leong', 'Maybank', 'Eximbank', 'VIB', 'DongA Bank',
+    'SGB', 'CBB', 'Cathay United', 'JP Morgan', 'Bank of Tokyo-Mitsubishi UFJ',
+    'Shanghai Pudong Development Bank', 'Taiwan Cooperative Bank', 'Qatar National Bank',
     'Abu Dhabi Commercial Bank'
-  ];
+];
+  
   
 
 function InfoBank() {

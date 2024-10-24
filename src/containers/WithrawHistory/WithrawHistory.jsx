@@ -1,10 +1,12 @@
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import './WithrawHistory.scss';
+import { CurrencyContext } from '../App';
 
 function WithrawHistory() {
+    const {formatCurrency} = useContext(CurrencyContext)
     // Giả lập lịch sử rút tiền
     const [withrawHistory, setWithrawHistory] = useState([])
 
@@ -55,8 +57,8 @@ function WithrawHistory() {
                                         <Row className='withraw-history-general'>
                                             <Col>
                                                 <Card.Text>
-                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số tiền: -{history.profitOut} €</p>
-                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số dư: {history.amount} €</p>                                                    
+                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số tiền: -{formatCurrency(history.profitOut)} €</p>
+                                                    <p style={{ marginBottom: "0", fontSize: "14px" }}>Số dư: {formatCurrency(history.amount)} €</p>                                                    
                                                 </Card.Text>
                                             </Col>
                                             <Col className="text-end">

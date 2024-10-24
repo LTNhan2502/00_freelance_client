@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { getAllMemberPackage } from "../../utils/memberPackageAPI";
 import { getOneUserByUsername, updateMemberToUser } from "../../utils/userAPI";
 import { toast } from "react-toastify";
 import Spinner from 'react-bootstrap/Spinner';
+import { CurrencyContext } from "../App";
 import "./Level_Member.scss";
 
 
 function Level_Member() {
+  const { formatCurrency } = useContext(CurrencyContext)
   const userName = localStorage.getItem("user_name");
   const [dataSource, setDataSource] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,7 +80,7 @@ function Level_Member() {
                       <div className="d-flex justify-content-around text-center">
                         <div>
                           <div>Phí nâng cấp</div>
-                          <div>{level.price} €</div>
+                          <div>{formatCurrency(level.price)} €</div>
                         </div>
                         <div>
                           <div>Chiết khấu</div>

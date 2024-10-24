@@ -31,7 +31,7 @@ function CustomerService() {
             <div className="content-cs">
                 <p className="load-history">Tải thêm thông tin lịch sử</p>
                 <div className="message-container">
-                <span className="message-time">MERCADO 15:20</span>
+                <span className="message-time">MERCADO</span>
                 <div className="message-box">
                     KÍNH CHÀO QUÝ KHÁCH - QUÝ KHÁCH CẦN HỖ TRỢ GÌ TỪ MERCADO LIBRE !
                 </div>

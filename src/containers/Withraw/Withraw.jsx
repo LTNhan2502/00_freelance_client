@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import bcrypt from 'bcryptjs';
 import { useFormik } from "formik";
@@ -11,8 +11,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './Withraw.scss';
 import { toast } from 'react-toastify';
+import { CurrencyContext } from '../App';
 
 function Withraw() {
+    const {formatCurrency} = useContext(CurrencyContext)
     const userName = localStorage.getItem("user_name")
     const statusWithraw = "waiting";
     const navigate = useNavigate()
@@ -149,7 +151,7 @@ function Withraw() {
                                     </span>
                                     <span className='user-amount'>
                                         <div className='fs-12'>Số dư (€)</div>
-                                        <div className='fs-15'>{thisUser?.amount || 0} €</div>
+                                        <div className='fs-15'>{formatCurrency(thisUser?.amount || 0)} €</div>
                                     </span>
                                 </div>
                             </Row>

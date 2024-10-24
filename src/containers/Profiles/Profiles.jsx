@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Card, Collapse, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,8 +6,10 @@ import { getOneUserByUsername } from '../../utils/userAPI';
 import logo_profile from '../../assets/logo-me.png';
 import { toast } from "react-toastify";
 import './Profiles.scss';
+import { CurrencyContext } from '../App';
 
 export default function Profiles() {
+  const {formatCurrency} = useContext(CurrencyContext)
     const [thisUser, setThisUser] = useState(null)
     const [userAmount, setUserAmount] = useState(0)
     const navigate = useNavigate()
@@ -121,7 +123,7 @@ export default function Profiles() {
                       <div className="info-card-mid p-4">
                         <div className="left-card-column">
                             <span>Số dư</span>
-                            <span>{thisUser?.amount || 0} €</span>
+                            <span>{formatCurrency(thisUser?.amount || 0)} €</span>
                         </div>
                         <div className="right-card-column">
                             <span>Cấp thành viên</span>
