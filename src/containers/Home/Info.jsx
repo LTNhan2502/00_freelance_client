@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Container, Row, Col, Modal, Button, Card } from "react-bootstrap";
+import { Container, Row, Col, Modal, Button, Card, Badge } from "react-bootstrap";
 import {
   faArrowsDownToLine,
   faArrowsUpToLine,
@@ -20,22 +20,36 @@ import { CurrencyContext } from '../App.jsx'
 
 export default function Info({ userAmount, setUserAmount, thisUser }) {
   const { formatCurrency } = useContext(CurrencyContext)
+  const isHaveNoti = true
+  const [notiCount, setNotiCount] = useState(2)
+  const [hasShownToast, setHasShownToast] = useState(false)
   const defaultAmount = 0;
-  const userName = localStorage.getItem("user_name");
+  const userName = localStorage.getItem("user_name")
   const navigate = useNavigate()
-  const [showCompanyInfo, setShowCompanyInfo] = useState(false);
-  const [showFoundationRules, setShowFoundationRules] = useState(false);
+  const [showCompanyInfo, setShowCompanyInfo] = useState(false)
+  const [showFoundationRules, setShowFoundationRules] = useState(false)
   const [showCoOp, setShowCoOp] = useState(false);
   const [openNoti, setOpenNoti] = useState(false)
   const [dataNoti, setDataNoti] = useState([
-    {id: 1, noti: "Hệ thống đã thanh toán 100.00€ cho bạn!"},
-    {id: 2, noti: "Bạn đã đặt lệnh rút 100.00€. Yêu cầu của bạn đang được xét duyệt"},
-    {id: 3, noti: "Hệ thống đã thanh toán 61.00€ cho bạn!"},
-    {id: 4, noti: "Bạn đã đặt lệnh rút 61.00€. Yêu cầu của bạn đang được xét duyệt"},
-    {id: 5, noti: "Hệ thống đã thanh toán 62.00€ cho bạn!"},
-    {id: 6, noti: "Bạn đã đặt lệnh rút 62.00€. Yêu cầu của bạn đang được xét duyệt"},
-  ])
+    { id: 3, noti: "Hệ thống đã thanh toán 61.00€ cho bạn!", isNew: false },
+    { id: 4, noti: "Bạn đã đặt lệnh rút 61.00€. Yêu cầu của bạn đang được xét duyệt", isNew: false },
+    { id: 1, noti: "Hệ thống đã thanh toán 100.00€ cho bạn!", isNew: true },
+    { id: 2, noti: "Bạn đã đặt lệnh rút 100.00€. Yêu cầu của bạn đang được xét duyệt", isNew: true },
+    { id: 5, noti: "Hệ thống đã thanh toán 62.00€ cho bạn!", isNew: false },
+    { id: 6, noti: "Bạn đã đặt lệnh rút 62.00€. Yêu cầu của bạn đang được xét duyệt", isNew: false },
+  ]);
 
+  useEffect(() => {
+    fetchUserAmount();
+  }, [userName, userAmount]);
+
+  // useEffect để hiện thông báo chưa xem
+  useEffect(() => {
+    if (isHaveNoti && !hasShownToast) {
+      toast.info(`Bạn có ${notiCount} thông báo chưa xem`);
+      setHasShownToast(true); 
+    }
+  }, [isHaveNoti, notiCount, hasShownToast]);
 
   const fetchUserAmount = async () => {
     if (!userName) {
@@ -53,9 +67,6 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
     }
   };
 
-  useEffect(() => {
-    fetchUserAmount();
-  }, [userName, userAmount]);
 
 
   const handleGoToEvent = () => {
@@ -82,8 +93,20 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
   const handleCloseCoOp = () => setShowCoOp(false);
   const handleShowCoOp = () => setShowCoOp(true);
 
+  // Toggle modal thông báo bình thường
   const toggleNoti = () => {
-    setOpenNoti(!openNoti)
+    setOpenNoti(!openNoti);
+  }
+
+  // Toggle modal thông báo đánh dấu đã đọc
+  const closeNoti = () => {
+    setOpenNoti(!openNoti);
+    // Đánh dấu tất cả thông báo là đã đọc khi mở modal
+    setDataNoti((prevData) =>
+      prevData.map((noti) => ({ ...noti, isNew: false }))
+    );
+    // Xoá lượng thông báo
+    setNotiCount(0)
   }
 
   return (
@@ -110,21 +133,38 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
               </div>
             </div>
             <div>
-              {/* Chuông thông báo */}
-              <FontAwesomeIcon icon={faBell} 
-                style={{
-                  fontSize: "1.8rem",
-                  color: "white",
-                  paddingRight: "10px",
-                  cursor: "pointer"
-                }}
-                onClick={() => toggleNoti()}
-              />
+              {/* Chuông thông báo với badge chấm đỏ nếu có thông báo mới */}
+              <div style={{ position: 'relative', display: 'inline-block' }}>
+                <FontAwesomeIcon
+                  icon={faBell}
+                  style={{
+                    fontSize: "1.8rem",
+                    color: "white",
+                    paddingRight: "10px",
+                    cursor: "pointer",
+                  }}
+                  onClick={toggleNoti}
+                />
+                {isHaveNoti && (
+                  <Badge
+                    bg="danger"
+                    pill
+                    style={{
+                      position: 'absolute',
+                      top: '0',
+                      right: '0',
+                      transform: 'translate(50%, -50%)',
+                    }}
+                  >
+                    {notiCount}
+                  </Badge>
+                )}
+              </div>
 
               {/* Modal thông báo */}
               <Modal
-                show={openNoti} 
-                onHide={toggleNoti}
+                show={openNoti}
+                onHide={closeNoti}
                 size="lg"
                 className="responsive-modal"
               >
@@ -132,19 +172,21 @@ export default function Info({ userAmount, setUserAmount, thisUser }) {
                   <Modal.Title>Thư thông báo</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                  {dataNoti.map((noti) => (
-                    <Card key={noti.id} className="mb-2"
-                      style={{
-                        backgroundColor: "transparent",
-                        color: "white",
-                        border: "1px solid #7a797d"
-                      }}
-                    >
-                      <Card.Body>
-                        {noti.noti}
-                      </Card.Body>
-                    </Card>
-                  ))}
+                  {dataNoti
+                    .sort((a, b) => b.isNew - a.isNew) // Đưa thông báo mới lên đầu
+                    .map((noti) => (
+                      <Card
+                        key={noti.id}
+                        className={`mb-2 ${noti.isNew ? 'new-noti' : ''}`}
+                        style={{
+                          backgroundColor: "transparent",
+                          color: "white",
+                          border: "1px solid #7a797d",
+                        }}
+                      >
+                        <Card.Body>{noti.noti}</Card.Body>
+                      </Card>
+                    ))}
                 </Modal.Body>
               </Modal>
             </div>

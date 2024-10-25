@@ -1,84 +1,88 @@
-.profile-container{
-    width: 100%;
-    min-width: 570px;
-    height: 100%;
-    padding-top: 20px;
-    
+.profile-container {
+  width: 100%;
+  min-width: 570px;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
 }
 
 .info-panel {
-    .info-card {
+  .info-card {
       background-color: transparent;
       border: none;
       margin-bottom: 60px;
 
-      .info-card-top{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        color: white;
-        font-size: 14px;
+      .info-card-top {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 20px;
+          color: white;
+          font-size: 14px;
 
-        .card-top-left{
-          img{
-            width: 48px;
-            height: 27px;
-            object-fit: cover;
+          .card-top-left img {
+              width: 48px;
+              height: auto;
+              object-fit: cover;
           }
-        }
 
-        .card-top-right{
-          display: flex;
-          flex-direction: column;
-          justify-content: end;
-          align-items: end;
-        }
+          .card-top-right {
+              display: flex;
+              flex-direction: column;
+              justify-content: end;
+              align-items: end;
+              text-align: right;
+          }
       }
 
-      .info-card-mid{
-        height: 75px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        color: white;
-        border-radius: 24px;
-        border: 1px solid #dbdfe4;
-        margin-bottom: 20px;
-
-
-        .left-card-column, .right-card-column {
+      .info-card-mid {
+          padding: 10px 15px;
           display: flex;
-          flex-direction: column; 
-          justify-content: center; 
-        }
-    
-        .right-card-column {
-          display: flex; 
-          flex-direction: column; 
-          justify-content: center; 
-          align-items: center; 
-        }
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          color: white;
+          border-radius: 24px;
+          border: 1px solid #dbdfe4;
+          margin-bottom: 20px;
+
+          .left-card-column, .right-card-column {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+          }
+
+          .right-card-column {
+              align-items: center;
+              text-align: center;
+          }
       }
-      
+
       ul {
-        li {
-          border-top: 1px solid #7a797d;
+          li {
+              border-top: 1px solid #7a797d;
 
-          &:last-child{
-            border-bottom: 1px solid #7a797d;
+              &:last-child {
+                  border-bottom: 1px solid #7a797d;
+              }
+
+              p {
+                  cursor: pointer;
+                  padding: 10px 0;
+                  color: white;
+                  text-align: left;
+                  transition: all 0.3s ease;
+                  margin-bottom: 0;
+
+                  &:hover {
+                      color: #dbdfe4;
+                  }
+              }
           }
-          p {
-            cursor: pointer;
-            padding: 10px 0 0 0;
-            color: white;
-            
-          }
-        }
       }
-    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -87,9 +91,15 @@
   }
 }
 
-@media (min-width: 320px) and (max-width: 360px) {
+@media (min-width: 320px) and (max-width: 344px) {
   .profile-container {
-    min-width: 360px;
+    min-width: 320px;
+  }
+}
+
+@media (min-width: 344px) and (max-width: 360px) {
+  .profile-container {
+    min-width: 344px;
   }
 }
 
@@ -123,9 +133,15 @@
   }
 }
 
-@media (min-width: 430px) and (max-width: 540px) {
+@media (min-width: 430px) and (max-width: 500px) {
   .profile-container {
     min-width: 430px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 540px) {
+  .profile-container {
+    min-width: 500px;
   }
 }
 

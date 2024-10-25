@@ -3,7 +3,6 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Level_Member from './Level_Member';
 import Info from './Info.jsx'
 import Recipients from "./Recipients";
-import HotProduct from "./HotProduct";
 import videoSrc from '../../assets/video.mp4';
 import './Home.scss';
 

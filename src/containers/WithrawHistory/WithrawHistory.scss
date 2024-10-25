@@ -92,9 +92,15 @@
   }
 }
 
-@media (min-width: 430px) and (max-width: 540px) {
+@media (min-width: 430px) and (max-width: 500px) {
   .withdraw-history-container {
     min-width: 430px;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 520px) {
+  .withdraw-history-container {
+    min-width: 470px;
   }
 }
 

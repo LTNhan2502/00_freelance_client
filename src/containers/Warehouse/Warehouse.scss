@@ -50,6 +50,17 @@
         color: white;
         overflow: hidden;
 
+        .card-img-container {
+          display: flex;
+          align-items: center; /* Căn giữa hình ảnh theo chiều dọc */
+
+          .product-image {
+            width: 150px;
+            height: 100%;
+            object-fit: cover; /* Giữ hình ảnh theo đúng tỷ lệ */
+        }
+      }
+
         .stamp {
             position: absolute;
             top: -8px;
@@ -200,4 +211,15 @@
       min-width: 540px;
     }
   }
+
+  @media (max-width: 768px) {
+    .received-product-card {
+        flex-direction: row; /* Giữ layout theo chiều ngang */
+    }
+
+    .product-image {
+        width: 100px; /* Thu nhỏ kích thước hình ảnh */
+        height: auto;  /* Giữ tỷ lệ hình ảnh */
+    }
+}
 

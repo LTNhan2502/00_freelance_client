@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Card, Collapse, Container, Row, Col } from 'react-bootstrap';
+import { Card, Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getOneUserByUsername } from '../../utils/userAPI';
 import logo_profile from '../../assets/logo-me.png';
-import { toast } from "react-toastify";
-import './Profiles.scss';
 import { CurrencyContext } from '../App';
+import './Profiles.scss';
 
 export default function Profiles() {
   const {formatCurrency} = useContext(CurrencyContext)
@@ -36,11 +35,7 @@ export default function Profiles() {
           console.error("Error fetching user amount:", error);
           setUserAmount(defaultAmount);
         }
-    };
-
-    const handleGoToDeposit = () => {
-      navigate("/deposit")
-    }
+    };  
 
     const handleGoToCustomerService = () => {
       navigate("/customer-service")
@@ -104,50 +99,53 @@ export default function Profiles() {
     };
 
     return (        
-        <Container className="profile-container">
-            <div className="info-panel">
-                <Card className="info-card">
+      <Container fluid className="profile-container">
+      <Row className="my-4 justify-content-center">
+          <Col xs={12} className="info-panel">
+              <Card className="info-card">
                   <Card.Body>
                       {/* Username, ID */}
                       <div className="info-card-top">
-                        <div className='card-top-left'>
-                          <img src={logo_profile} alt="logo" />
-                        </div>
-                        <div className='card-top-right'>
-                          <span>{thisUser?.userName}</span>
-                          <span>ID: {thisUser?._id}</span>
-                        </div>
+                          <div className='card-top-left'>
+                              <img src={logo_profile} alt="logo" />
+                          </div>
+                          <div className='card-top-right'>
+                              <span>{thisUser?.userName}</span>
+                              <span>ID: {thisUser?._id}</span>
+                          </div>
                       </div>
-
+  
                       {/* Card general info */}
-                      <div className="info-card-mid p-4">
-                        <div className="left-card-column">
-                            <span>Số dư</span>
-                            <span>{formatCurrency(thisUser?.amount || 0)} €</span>
-                        </div>
-                        <div className="right-card-column">
-                            <span>Cấp thành viên</span>
-                            <span className="text-center">{thisUser?.memberId?.packageName || "Không"}</span>
-                        </div>
+                      <div className="info-card-mid">
+                          <div className="left-card-column">
+                              <span>Số dư</span>
+                              <span>{formatCurrency(thisUser?.amount || 0)} €</span>
+                          </div>
+                          <div className="right-card-column">
+                              <span>Cấp thành viên</span>
+                              <span>{thisUser?.memberId?.packageName || "Không"}</span>
+                          </div>
                       </div>
-
+  
                       {/* List navigate */}
                       <ul className="list-unstyled">
-                        <li><p onClick={() => handleGoToCustomerService()}>Nạp tiền</p></li>
-                        <li><p onClick={() => handleGoToWithraw()}>Rút tiền</p></li>
-                        <li><p onClick={() => handleGoToDepositHistory()}>Lịch sử nạp tiền</p></li>
-                        <li><p onClick={() => handleGoToWithrawHistory()}>Lịch sử rút tiền</p></li>
-                        <li><p onClick={() => handleGoToOrderHistory()}>Lịch sử đơn hàng</p></li>
-                        <li><p onClick={() => alert("Lịch sử nhận thưởng")}>Lịch sử nhận thưởng</p></li>
-                        <li><p onClick={() => handleGoToGroupReport()}>Báo cáo nhóm</p></li>
-                        <li><p onClick={() => handleGoToBankAccount()}>Thông tin ngân hàng</p></li>
-                        <li><p onClick={() => handleGoToAddress()}>Địa chỉ</p></li>
-                        <li><p onClick={() => alert("Chuyển đổi ngôn ngữ")}>Chuyển đổi ngôn ngữ</p></li>
-                        <li><p onClick={onClickLogout}>Đăng xuất</p></li>
+                          <li><p onClick={() => handleGoToCustomerService()}>Nạp tiền</p></li>
+                          <li><p onClick={() => handleGoToWithraw()}>Rút tiền</p></li>
+                          <li><p onClick={() => handleGoToDepositHistory()}>Lịch sử nạp tiền</p></li>
+                          <li><p onClick={() => handleGoToWithrawHistory()}>Lịch sử rút tiền</p></li>
+                          <li><p onClick={() => handleGoToOrderHistory()}>Lịch sử đơn hàng</p></li>
+                          <li><p onClick={() => alert("Lịch sử nhận thưởng")}>Lịch sử nhận thưởng</p></li>
+                          <li><p onClick={() => handleGoToGroupReport()}>Báo cáo nhóm</p></li>
+                          <li><p onClick={() => handleGoToBankAccount()}>Thông tin ngân hàng</p></li>
+                          <li><p onClick={() => handleGoToAddress()}>Địa chỉ</p></li>
+                          <li><p onClick={() => alert("Chuyển đổi ngôn ngữ")}>Chuyển đổi ngôn ngữ</p></li>
+                          <li><p onClick={onClickLogout}>Đăng xuất</p></li>
                       </ul>
                   </Card.Body>
-                </Card>
-            </div>
-        </Container>        
+              </Card>
+          </Col>
+      </Row>
+  </Container>
+          
     );
 }

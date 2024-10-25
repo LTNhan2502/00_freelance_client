@@ -3,8 +3,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { Outlet, useLocation } from "react-router-dom";
 import Navi from "../containers/Navigation/Navi";
 import { createContext } from "react";
+import { UserProvider } from "../components/UserProvider";
 
 export const CurrencyContext = createContext()
+
 const formatCurrency = (amount) => {
   const num = parseFloat(amount);
 
@@ -18,8 +20,8 @@ const formatCurrency = (amount) => {
     .replace('.', ','); // Đổi dấu chấm thập phân thành dấu phẩy
 };
 
+
 function App({ children }) {
-  const isAuth = localStorage.getItem("access_token");
   const location = useLocation()
   const isEventPage = location.pathname.includes("/events")
   const isLoginPage = location.pathname.includes("/login")
@@ -28,32 +30,34 @@ function App({ children }) {
   const targetBackground = isEventPage ? "event-background" : (isLoginPage ||  isRegisterPage) ? "auth-background" : "default-background"
 
   return (
-    <CurrencyContext.Provider value={{ formatCurrency  }}>
-      <div className={`main-container ${targetBackground}`}>
-        <div className="content-container">            
-          {/* <div className="content"> */}
-            <Outlet/>
-          {/* </div> */}
-          <div className="navigation">
-            <Navi/>
+    <UserProvider>
+      <CurrencyContext.Provider value={{ formatCurrency  }}>
+        <div className={`main-container ${targetBackground}`}>
+          <div className="content-container">            
+            {/* <div className="content"> */}
+              <Outlet/>
+            {/* </div> */}
+            <div className="navigation">
+              <Navi/>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Toastify dùng để hiển thị thông báo */}
-      <ToastContainer
-        position="top-center"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-    </CurrencyContext.Provider>
+        {/* Toastify dùng để hiển thị thông báo */}
+        <ToastContainer
+          position="top-center"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </CurrencyContext.Provider>      
+    </UserProvider>
   )
 }
 

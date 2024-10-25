@@ -3,14 +3,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useEffect, useState } from 'react'
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { CurrencyContext } from '../App';
+import { UserContext } from '../../components/UserProvider';
+import { getAllHistoryBankID } from '../../utils/bank';
 
 function DepositHistory() {
+    const [thisUser, fetchThisUserData] = useContext(UserContext)
     const {formatCurrency} = useContext(CurrencyContext)
+
+    const userName = localStorage.getItem("user_name")
     // Giả lập lịch sử rút tiền
     const [DepositHistory, setDepositHistory] = useState([])
 
     useEffect(() => {
-        fetchData()
+        // fetchData()
+        if(userName){
+            fetchThisUserData(userName)
+        }
+        fetchDepositHistoryByID()
     })
     
     // Giả lập fetch apit lịch sử rút tiền
@@ -27,6 +36,19 @@ function DepositHistory() {
                 { id: 8, deposit: '600', amount: 595, status: "success", depositTime: "05:59" },
             ])
         }, 1000)
+    }
+
+    const fetchDepositHistoryByID = async() => {
+        try {
+            const res = await getAllHistoryBankID(thisUser._id)
+            console.log(res.data);
+            return;
+            
+        } catch (error) {
+            console.log("Error fetch deposit history", error);
+            
+        }
+
     }
 
     const handleGoToHome = () => {
